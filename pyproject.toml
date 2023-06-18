@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "mccu-controller-web"
+version = "0.1.0"
+description = ""
+authors = ["ShivamChaurasia01 <118128276+ShivamChaurasia01@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "mccu_controller_web"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
