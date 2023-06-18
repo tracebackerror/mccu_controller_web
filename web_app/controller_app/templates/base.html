@@ -315,13 +315,18 @@ li {
     margin-top: 5em;
 }
 /* Hedare End */
+
+
+.btn-center-icon {
+    padding: 1.5rem 2rem
+}
     </style>
 </head>
 <body>
 <div class="sidebar">
     <ul class="nav flex-column">
         <li class="nav-item">
-            <button class="nav-link active" type="button">
+            <button class="nav-link active btn-center-icon" type="button">
                 <i class="fas fa-satellite-dish"></i>
                 <span class="menu-text badge badge-dark">
           <span class="badge-triangle"></span>
@@ -330,7 +335,7 @@ li {
             </button>
         </li>
         <li class="nav-item">
-            <button class="nav-link" type="button">
+            <button class="nav-link btn-center-icon" type="button">
                 <i class="fas fa-sync-alt"></i>
                 <span class="menu-text badge badge-dark">
           <span class="badge-triangle"></span>
@@ -339,7 +344,7 @@ li {
             </button>
         </li>
         <li class="nav-item">
-            <button class="nav-link" type="button">
+            <button class="nav-link btn-center-icon" type="button">
                 <i class="fas fa-power-off"></i>
                 <span class="menu-text badge badge-dark">
           <span class="badge-triangle"></span>
@@ -348,7 +353,7 @@ li {
             </button>
         </li>
         <li class="nav-item">
-            <button class="nav-link" type="button">
+            <button class="nav-link btn-center-icon" type="button">
                 <i class="fas fa-shield-alt"></i>
                 <span class="menu-text badge badge-dark">
           <span class="badge-triangle"></span>
@@ -357,7 +362,7 @@ li {
             </button>
         </li>
         <li class="nav-item">
-            <button class="nav-link" type="button">
+            <button class="nav-link btn-center-icon " type="button">
                 <i class="fas fa-cogs"></i>
                 <span class="menu-text badge badge-dark">
           <span class="badge-triangle"></span>
@@ -366,18 +371,18 @@ li {
             </button>
         </li>
         <li class="nav-item">
-            <button class="nav-link" type="button">
+            <a class="nav-link" href="/profile">
                 <i class="fas fa-user"></i>
-                <span class="menu-text badge badge-dark">
-          <span class="badge-triangle"></span>
-          Profile
-        </span>
-            </button>
+                <span class="menu-text badge badge-dark ">
+                  <span class="badge-triangle"></span>
+                  Profile
+                </span>
+            </a>
         </li>
-        <li class="nav-item bottom-menu">
+        <li class="nav-item bottom-menu ">
             <form action="/logout" method="POST">
                 {% csrf_token %}
-                <button class="btn nav-link" type="submit">
+                <button class="btn nav-link btn-center-icon" type="submit">
                     <i class="fas fa-sign-out-alt"></i>
                     <span class="menu-text badge badge-dark">
             <span class="badge-triangle"></span>
