@@ -310,7 +310,9 @@ li {
 .fixed-top {
     z-index:-999;
 }
-
+.main-dashbaord{
+    padding:0px;
+}
 .content-top {
     margin-top: 5em;
 }
@@ -362,13 +364,13 @@ li {
             </button>
         </li>
         <li class="nav-item">
-            <button class="nav-link btn-center-icon " type="button">
+            <a class="nav-link " href="settings">
                 <i class="fas fa-cogs"></i>
                 <span class="menu-text badge badge-dark">
-          <span class="badge-triangle"></span>
-          Settings
-        </span>
-            </button>
+                  <span class="badge-triangle"></span>
+                  Settings
+                </span>
+            </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/profile">
@@ -395,8 +397,14 @@ li {
 </div>
 
 <!-- Header -->
-<!-- Navigation -->
-<div class="fixed-top">
+
+
+
+
+
+<div class="content main-dashbaord" >
+    <!-- Navigation -->
+<div class="fixed-top-1">
 
   <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
     <div class="container">
@@ -408,46 +416,27 @@ li {
 
         <ul class="navbar-nav ml-auto">
 
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
+          <li class="nav-item ">
+            <a class="nav-link" href="/dashboard">Dashboard</a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+           <li class="nav-item ">
+            <a class="nav-link" href="/dashboard">Satellite</a>
           </li>
 
-         <li class="nav-item">
-            <a class="nav-link" href="#">Fruits</a>
+            <li class="nav-item ">
+            <a class="nav-link" href="/dashboard">Monitor</a>
+          </li>
+            <li class="nav-item ">
+            <a class="nav-link" href="/dashboard">Diagnostic</a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="#">Sea food</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="#">Vegetables</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="#">Blog</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
         </ul>
       </div>
     </div>
   </nav>
 </div>
 <!-- Header End-->
-
-
-
-
-<div class="content ">
     {% block content %}{% endblock %}
 </div>
 

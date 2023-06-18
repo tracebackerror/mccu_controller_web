@@ -16,6 +16,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.shortcuts import render, redirect
 
+from .models import SLSCNetworkSettings
 
 @login_required
 def change_password(request):
@@ -99,3 +100,47 @@ class DashboardPage(LoginRequiredMixin, TemplateView):
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+
+
+class SettingsPage(LoginRequiredMixin, TemplateView):
+    template_name = 'settings.html'
+    login_url = "/"
+
+    def get_slsc_ip_details(self):
+        slsc_ip_details = SLSCNetworkSettings.objects.first()
+        if slsc_ip_details:
+            ip_address = slsc_ip_details.ip_address.split(".")
+            ip_address = [each_ip_address for each_ip_address in ip_address if each_ip_address  != "."]
+        else:
+            ip_address = ["","","", ""]
+        return ip_address, slsc_ip_details.port_number
+    def get_context_data(self, **kwargs):
+        kwargs = super(SettingsPage, self).get_context_data(**kwargs)
+        slsc_ip, slsc_port = self.get_slsc_ip_details()
+        kwargs['slsc_ip'] = slsc_ip
+        kwargs['slsc_port'] = slsc_port
+        return kwargs
+
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+
+        if 'slsc_settings_form' in request.POST:
+            ip_address_1 = request.POST.get("ip_address_1").strip()
+            ip_address_2 = request.POST.get("ip_address_2").strip()
+            ip_address_3 = request.POST.get("ip_address_3").strip()
+            ip_address_4 = request.POST.get("ip_address_4").strip()
+
+            ip_to_save = f"{ip_address_1}.{ip_address_2}.{ip_address_3}.{ip_address_4}"
+            port = request.POST.get("port")
+            SLSCNetworkSettings.objects.all().delete()
+            models_to_save = SLSCNetworkSettings(ip_address=ip_to_save, port_number=port )
+            models_to_save.save()
+
+            messages.info(request, 'SLSC Network Settings is Saved.')
+
+            slsc_ip, slsc_port = self.get_slsc_ip_details()
+
+            kwargs['slsc_ip'] = slsc_ip
+            kwargs['slsc_port'] = slsc_port
+        return self.render_to_response(context)
