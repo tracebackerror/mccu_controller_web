@@ -1,5 +1,6 @@
 import csv
 import time
+import random
 
 def write_to_csv(data, filename):
     with open(filename, 'a', newline='') as file:
@@ -9,7 +10,7 @@ def write_to_csv(data, filename):
 # Example usage
 while True:
     # Generate or retrieve the data to be written to the CSV file
-    data = [1, 2, 3, 4, 5]
+    data = [random.random(), random.random(), random.random(), random.random(), random.random()]
 
     # Specify the filename of the CSV file
     filename = 'data.csv'

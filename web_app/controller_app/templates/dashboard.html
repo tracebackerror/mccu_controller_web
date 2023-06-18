@@ -38,8 +38,8 @@
 
                 <!-- Antenna Position -->
                 <h5 class="card-title">Antenna Position</h5>
-                <p>Azimuth: {{ antenna_position.azimuth }}</p>
-                <p>Elevation: {{ antenna_position.elevation }}</p>
+                <p >Azimuth: <span id="azimuth"></span></p>
+                <p>Elevation: <span id="elevation"></span></p>
                 <!-- Add more fields as needed -->
 
                 <!-- Antenna Target -->
@@ -125,12 +125,7 @@
       $('#myTabs').tab();
     });
 
-    const eventSource = new EventSource('http://127.0.0.1:8000/csv_stream');
 
-    eventSource.onmessage = function(event) {
-      const data = event.data;
-      console.log(data);
-    };
 
 
   </script>

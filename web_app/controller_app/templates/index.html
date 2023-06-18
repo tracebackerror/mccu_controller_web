@@ -93,5 +93,31 @@ button:hover {
       <button type="submit">Sign In</button>
     </form>
   </div>
+
+<script>
+    const eventSource = new EventSource('http://127.0.0.1:8000/csv_stream');
+
+
+    const outputDiv = document.getElementById('output');
+
+    eventSource.onmessage = function(event) {
+      const data = event.data;
+      const columns = data.split(','); // Split the CSV data into columns
+
+      // Create a container element to hold the columns
+      const row = document.createElement('div');
+      row.className = 'row';
+
+      // Render each column in a separate HTML element
+      columns.forEach(function(columnData) {
+        const column = document.createElement('p');
+        column.textContent = columnData;
+        row.appendChild(column);
+      });
+
+      outputDiv.appendChild(row); // Append the row to the output container
+    };
+
+</script>
 </body>
 </html>

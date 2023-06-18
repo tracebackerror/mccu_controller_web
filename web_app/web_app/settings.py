@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 import os.path
 
@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-xgu4k=(ejbf!^jua-lo4-^mim5g2ieuojrw^rcct)887wyzt1=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -42,7 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'controller_app',
 ]
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    "/var/www/static/",
+]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

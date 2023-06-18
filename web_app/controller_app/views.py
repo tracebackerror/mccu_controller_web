@@ -37,7 +37,7 @@ def stream_csv(request):
             csv_reader = csv.reader(csv_file)
             for row in csv_reader:
                 yield f'data: {",".join(row)}\n\n'
-                time.sleep(1)  # Delay between sending rows, adjust as needed
+                #time.sleep(1)  # Delay between sending rows, adjust as needed
 
     response = StreamingHttpResponse(event_stream(), content_type='text/event-stream')
     response['Cache-Control'] = 'no-cache'
