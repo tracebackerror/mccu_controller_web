@@ -20,6 +20,27 @@ from django.shortcuts import render, redirect
 
 from .models import SLSCNetworkSettings
 
+
+@login_required
+def restart_command(request):
+    slsc_ip_details = SLSCNetworkSettings.objects.first()
+
+    if slsc_ip_details:
+        if request.method == "POST":
+
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.connect((slsc_ip_details.ip_address, int(slsc_ip_details.port_number)))
+                s.sendall(b'Hello, world')
+                data = s.recv(1024)
+            messages.suucess(request,
+                           'Restart Command Sent.')
+            print('Received', repr(data))
+    else:
+        messages.error(request, 'SLSC Is Not Configured. Please configure SLSC IP in Settings > SLSC Network Settings.')
+
+    return redirect("/dashboard")
+
+
 @login_required
 def shutdown_command(request):
     slsc_ip_details = SLSCNetworkSettings.objects.first()
@@ -35,7 +56,7 @@ def shutdown_command(request):
                            'Shutdown Command Sent.')
             print('Received', repr(data))
     else:
-        messages.error(request, 'SLSC Is Not Configured. Please configure SLSC IP in Settings > SLSC Network Settingss.')
+        messages.error(request, 'SLSC Is Not Configured. Please configure SLSC IP in Settings > SLSC Network Settings.')
 
     return redirect("/dashboard")
 
