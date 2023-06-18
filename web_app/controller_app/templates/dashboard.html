@@ -124,6 +124,15 @@
     $(document).ready(function () {
       $('#myTabs').tab();
     });
+
+    const eventSource = new EventSource('http://127.0.0.1:8000/csv_stream');
+
+    eventSource.onmessage = function(event) {
+      const data = event.data;
+      console.log(data);
+    };
+
+
   </script>
 
 {% endblock %}

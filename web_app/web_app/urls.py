@@ -12,4 +12,5 @@ urlpatterns = [
     path('logout', views.logout_view, name="logout"),
     path('settings', views.SettingsPage.as_view(), name="settings"),
     path('change_password/', views.change_password, name='change_password'),
+    path('csv_stream', views.stream_csv, name='csv_stream'),
 ]

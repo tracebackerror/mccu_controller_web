@@ -1,5 +1,6 @@
 import socket
-
+import csv
+import time
 from django.shortcuts import render
 
 from django.views.generic.base import View
@@ -19,7 +20,31 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from .models import SLSCNetworkSettings
+from django.http import HttpResponse
+from django.views import View
+from django.views.decorators.http import condition
 
+from django.http import StreamingHttpResponse
+
+
+data = '/Users/tracebackerror/Documents/GitHub/mccu_controller_web/oneoff/data.csv'
+
+
+def stream_csv(request):
+    def event_stream():
+        # Replace 'path/to/your/csv/file.csv' with the actual path to your CSV file
+        with open('/Users/tracebackerror/Documents/GitHub/mccu_controller_web/oneoff/data.csv', 'r') as csv_file:
+            csv_reader = csv.reader(csv_file)
+            for row in csv_reader:
+                yield f'data: {",".join(row)}\n\n'
+                time.sleep(1)  # Delay between sending rows, adjust as needed
+
+    response = StreamingHttpResponse(event_stream(), content_type='text/event-stream')
+    response['Cache-Control'] = 'no-cache'
+    response['Content-Type'] = 'text/event-stream'
+    response['X-Accel-Buffering'] = 'no'  # Disable buffering for nginx
+
+    return response
 
 @login_required
 def restart_command(request):
