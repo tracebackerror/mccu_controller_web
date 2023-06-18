@@ -1,3 +1,5 @@
+import socket
+
 from django.shortcuts import render
 
 from django.views.generic.base import View
@@ -17,6 +19,25 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from .models import SLSCNetworkSettings
+
+@login_required
+def shutdown_command(request):
+    slsc_ip_details = SLSCNetworkSettings.objects.first()
+
+    if slsc_ip_details:
+        if request.method == "POST":
+
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.connect((slsc_ip_details.ip_address, int(slsc_ip_details.port_number)))
+                s.sendall(b'Hello, world')
+                data = s.recv(1024)
+            messages.suucess(request,
+                           'Shutdown Command Sent.')
+            print('Received', repr(data))
+    else:
+        messages.error(request, 'SLSC Is Not Configured. Please configure SLSC IP in Settings > SLSC Network Settingss.')
+
+    return redirect("/dashboard")
 
 @login_required
 def change_password(request):
@@ -86,6 +107,9 @@ class ProfilePage(LoginRequiredMixin, TemplateView):
 
 
 
+
+
+
 class DashboardPage(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard.html'
     login_url = "/"
@@ -108,13 +132,16 @@ class SettingsPage(LoginRequiredMixin, TemplateView):
     login_url = "/"
 
     def get_slsc_ip_details(self):
+        port_number = ""
+        ip_address = ["", "", "", ""]
         slsc_ip_details = SLSCNetworkSettings.objects.first()
         if slsc_ip_details:
             ip_address = slsc_ip_details.ip_address.split(".")
             ip_address = [each_ip_address for each_ip_address in ip_address if each_ip_address  != "."]
-        else:
-            ip_address = ["","","", ""]
-        return ip_address, slsc_ip_details.port_number
+            port_number = slsc_ip_details.port_number
+
+
+        return ip_address, port_number
     def get_context_data(self, **kwargs):
         kwargs = super(SettingsPage, self).get_context_data(**kwargs)
         slsc_ip, slsc_port = self.get_slsc_ip_details()

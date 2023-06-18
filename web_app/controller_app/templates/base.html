@@ -347,13 +347,16 @@ li {
             </button>
         </li>
         <li class="nav-item">
-            <button class="nav-link btn-center-icon" type="button">
-                <i class="fas fa-power-off"></i>
-                <span class="menu-text badge badge-dark">
-          <span class="badge-triangle"></span>
-          Shutdown
-        </span>
-            </button>
+            <form action="/shutdown" method="POST">
+                {% csrf_token %}
+                <button class="nav-link btn-center-icon" type="submit">
+                    <i class="fas fa-power-off"></i>
+                    <span class="menu-text badge badge-dark">
+                  <span class="badge-triangle"></span>
+                  Shutdown
+                </span>
+                </button>
+            </form>
         </li>
         <li class="nav-item">
             <button class="nav-link btn-center-icon" type="button">
@@ -388,9 +391,9 @@ li {
                 <button class="btn nav-link btn-center-icon" type="submit">
                     <i class="fas fa-sign-out-alt"></i>
                     <span class="menu-text badge badge-dark">
-            <span class="badge-triangle"></span>
-            Logout
-          </span>
+                    <span class="badge-triangle"></span>
+                        Logout
+                    </span>
                 </button>
             </form>
         </li>
@@ -438,6 +441,17 @@ li {
   </nav>
 </div>
 <!-- Header End-->
+          <div class="row">
+            <div class="col-md-6 offset-md-3">
+              {% if messages %}
+                  <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+            </div>
+      </div>
     {% block content %}{% endblock %}
 </div>
 

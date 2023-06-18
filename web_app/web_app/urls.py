@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.LoginPage.as_view(), name="login"),
     path('dashboard', views.DashboardPage.as_view(), name="login"),
     path('profile', views.ProfilePage.as_view(), name="profile"),
+    path('shutdown', views.shutdown_command, name="shutdown"),
     path('logout', views.logout_view, name="logout"),
     path('settings', views.SettingsPage.as_view(), name="settings"),
     path('change_password/', views.change_password, name='change_password'),
