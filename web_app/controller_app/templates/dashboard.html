@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block title %}Page Title{% endblock %}
+
+{% block content %}
+
+
+<body>
+  <div class="container content-top">
+    <ul class="nav nav-tabs" id="myTabs">
+      <li class="nav-item">
+        <a class="nav-link active" id="main-tab" data-toggle="tab" href="#main">Main</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="satellite-tab" data-toggle="tab" href="#satellite">Satellite</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="monitor-tab" data-toggle="tab" href="#monitor">Monitor</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="diagnostic-tab" data-toggle="tab" href="#diagnostic">Diagnostic</a>
+      </li>
+    </ul>
+
+    <div class="tab-content mt-3">
+      <!-- Main Tab -->
+      <div class="tab-pane fade show active" id="main">
+        <div class="row">
+          <!-- Left Section -->
+          <div class="col-lg-3">
+            <div class="card">
+              <div class="card-body">
+                <!-- ADE Status -->
+                <h5 class="card-title">ADE Status</h5>
+                <p>Date: {{ ade_status.date }}</p>
+                <p>Time: {{ ade_status.time }}</p>
+                <!-- Add more fields as needed -->
+
+                <!-- Antenna Position -->
+                <h5 class="card-title">Antenna Position</h5>
+                <p>Azimuth: {{ antenna_position.azimuth }}</p>
+                <p>Elevation: {{ antenna_position.elevation }}</p>
+                <!-- Add more fields as needed -->
+
+                <!-- Antenna Target -->
+                <h5 class="card-title">Antenna Target</h5>
+                <p>Azimuth: {{ antenna_target.azimuth }}</p>
+                <p>Elevation: {{ antenna_target.elevation }}</p>
+                <!-- Add more fields as needed -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Center Section -->
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-body">
+                <!-- Antenna Chart -->
+                <h5 class="card-title">Antenna Chart</h5>
+                <div id="antenna-chart"></div>
+                <script>
+                  // Replace with your chart code or embed a plot here
+                </script>
+
+                <!-- Commands -->
+                <h5 class="card-title">Commands</h5>
+                <button class="btn btn-primary">ADE COMM</button>
+                <button class="btn btn-primary">GPS</button>
+                <button class="btn btn-primary">OSU</button>
+                <!-- Add more buttons as needed -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Section -->
+          <div class="col-lg-3">
+            <div class="card">
+              <div class="card-body">
+                <!-- Satellite Information -->
+                <h5 class="card-title">Satellite Information</h5>
+                <p>Satellite: {{ satellite_info.satellite }}</p>
+                <p>Channel: {{ satellite_info.channel }}</p>
+                <!-- Add more fields as needed -->
+
+                <!-- Beacon Power Chart -->
+                <h5 class="card-title">Beacon Power Chart</h5>
+                <div id="beacon-power-chart"></div>
+                <script>
+                  // Replace with your chart code or embed a plot here
+                </script>
+
+                <!-- Current Consumption -->
+                <h5 class="card-title">Current Consumption</h5>
+                <p>Motor Azimuth: {{ current_consumption.motor_azimuth }}</p>
+                <p>Motor Elevation: {{ current_consumption.motor_elevation }}</p>
+                <!-- Add more fields as needed -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Satellite Tab -->
+      <div class="tab-pane fade" id="satellite">
+        <!-- Content for Satellite Tab -->
+      </div>
+
+      <!-- Monitor Tab -->
+      <div class="tab-pane fade" id="monitor">
+        <!-- Content for Monitor Tab -->
+      </div>
+
+      <!-- Diagnostic Tab -->
+      <div class="tab-pane fade" id="diagnostic">
+        <!-- Content for Diagnostic Tab -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Initialize Bootstrap Tabs -->
+  <script>
+    $(document).ready(function () {
+      $('#myTabs').tab();
+    });
+  </script>
+
+{% endblock %}

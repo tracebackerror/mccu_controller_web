@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+
+ /* Footer */
+  html {
+  position: relative;
+  min-height: 100%;
+}
+
+bobody {
+  margin-bottom: 60px; /* Adjust the margin-bottom value as needed */
+  padding-bottom: 60px; /* Add this line to create space for the footer */
+}
+
+.footer {
+  position: fixed; /* Change position to fixed */
+  bottom: 0;
+  width: 100%;
+  height: 40px; /* Adjust the height value as needed */
+  background-color: #333;
+  color: #fff;
+}
+
+.shell {
+  padding: 10px;
+}
+
+/* Footer end */
+
+    .sidebar {
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      width: 80px;
+      background-color: #333;
+      padding-top: 20px;
+      transition: width 0.3s;
+      z-index: 999;
+    }
+
+    .sidebar.expanded {
+      width: 200px;
+    }
+
+    .sidebar .nav-link {
+      text-align: center;
+      border: none;
+      background: none;
+      color: #fff;
+      transition: padding 0.3s;
+      position: relative;
+    }
+
+    .sidebar.expanded .nav-link {
+      padding-left: 20px;
+      text-align: left;
+    }
+
+    .sidebar .nav-link i {
+      font-size: 24px;
+      display: block;
+    }
+
+    .sidebar .nav-link .menu-text {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: calc(80px + 10px); /* Adjust the left position as needed */
+      transform: translateY(-50%);
+      white-space: nowrap;
+      font-size: 14px;
+      color: #fff;
+      transition: opacity 0.3s;
+    }
+
+    .sidebar.expanded .nav-link .menu-text {
+      display: inline;
+      left: 100px; /* Adjust the left position as needed */
+    }
+
+    .sidebar .nav-link:hover .menu-text {
+      display: block;
+    }
+
+    .sidebar .bottom-menu {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .content {
+      margin-left: 80px;
+      padding: 20px;
+    }
+
+    .navbar {
+      margin: 0;
+      border-radius: 0;
+      background-color: #333;
+    }
+
+    .navbar-nav {
+      margin: 0;
+    }
+
+    .navbar-brand {
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .navbar-nav .nav-link {
+      color: #fff;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #ddd;
+    }
+
+.badge-triangle {
+  position: relative;
+}
+
+.badge-triangle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  transform: translateY(-50%);
+  border-top: 5px solid transparent;
+  border-right: 5px solid #000; /* Replace with the desired color */
+  border-bottom: 5px solid transparent;
+}
+
+/* Header Code */
+body {
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #f7f7f7;
+}
+.navbar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+/*
+headeer top
+*/
+.topbar{
+  background-color: #212529;
+  padding: 0;
+}
+
+.topbar .container .row {
+  margin:-7px;
+  padding:0;
+}
+
+.topbar .container .row .col-md-12 {
+  padding:0;
+}
+
+.topbar p{
+  margin:0;
+  display:inline-block;
+  font-size: 13px;
+  color: #f1f6ff;
+}
+
+.topbar p > i{
+  margin-right:5px;
+}
+.topbar p:last-child{
+  text-align:right;
+}
+
+header .navbar {
+    margin-bottom: 0;
+}
+
+.topbar li.topbar {
+    display: inline;
+    padding-right: 18px;
+    line-height: 52px;
+    transition: all .3s linear;
+}
+
+.topbar li.topbar:hover {
+    color: #1bbde8;
+}
+
+.topbar ul.info i {
+    color: #131313;
+    font-style: normal;
+    margin-right: 8px;
+    display: inline-block;
+    position: relative;
+    top: 4px;
+}
+
+.topbar ul.info li {
+    float: right;
+    padding-left: 30px;
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 44px;
+}
+
+.topbar ul.info i span {
+    color: #aaa;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 50px;
+    padding-left: 18px;
+}
+
+ul.social-network {
+  border:none;
+  margin:0;
+  padding:0;
+}
+
+ul.social-network li {
+  border:none;
+  margin:0;
+}
+
+ul.social-network li i {
+  margin:0;
+}
+
+ul.social-network li {
+    display:inline;
+    margin: 0 5px;
+    border: 0px solid #2D2D2D;
+    padding: 5px 0 0;
+    width: 32px;
+    display: inline-block;
+    text-align: center;
+    height: 32px;
+    vertical-align: baseline;
+    color: #000;
+}
+
+ul.social-network {
+  list-style: none;
+  margin: 5px 0 10px -25px;
+  float: right;
+}
+
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    will-change: opacity, transform;
+    transition: .3s ease-out;
+    color: #fff;
+}
+a {
+  color: #0a0a0a;
+  text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+}
+.bg-image-full {
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.bg-dark {
+    background-color: #222!important;
+}
+
+.mx-background-top-linear {
+    background: -webkit-linear-gradient(45deg, #54d400 48%, #1b1e21 48%);
+    background: -webkit-linear-gradient(left, #54d400 48%, #1b1e21 48%);
+    background: linear-gradient(45deg, #54d400 48%, #1b1e21 48%);
+}
+.fixed-top {
+    z-index:-999;
+}
+
+.content-top {
+    margin-top: 5em;
+}
+/* Hedare End */
+    </style>
+</head>
+<body>
+<div class="sidebar">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <button class="nav-link active" type="button">
+                <i class="fas fa-satellite-dish"></i>
+                <span class="menu-text badge badge-dark">
+          <span class="badge-triangle"></span>
+          Tantrayut Telecom.
+        </span>
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" type="button">
+                <i class="fas fa-sync-alt"></i>
+                <span class="menu-text badge badge-dark">
+          <span class="badge-triangle"></span>
+          Restart
+        </span>
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" type="button">
+                <i class="fas fa-power-off"></i>
+                <span class="menu-text badge badge-dark">
+          <span class="badge-triangle"></span>
+          Shutdown
+        </span>
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" type="button">
+                <i class="fas fa-shield-alt"></i>
+                <span class="menu-text badge badge-dark">
+          <span class="badge-triangle"></span>
+          Safe Mode
+        </span>
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" type="button">
+                <i class="fas fa-cogs"></i>
+                <span class="menu-text badge badge-dark">
+          <span class="badge-triangle"></span>
+          Settings
+        </span>
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" type="button">
+                <i class="fas fa-user"></i>
+                <span class="menu-text badge badge-dark">
+          <span class="badge-triangle"></span>
+          Profile
+        </span>
+            </button>
+        </li>
+        <li class="nav-item bottom-menu">
+            <form action="/logout" method="POST">
+                {% csrf_token %}
+                <button class="btn nav-link" type="submit">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="menu-text badge badge-dark">
+            <span class="badge-triangle"></span>
+            Logout
+          </span>
+                </button>
+            </form>
+        </li>
+    </ul>
+</div>
+
+<!-- Header -->
+<!-- Navigation -->
+<div class="fixed-top">
+
+  <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+    <div class="container">
+      <a class="navbar-brand" href="index.html" style="text-transform: uppercase;"> TANTRAYUT TELECOMMUNICATIONS MCCU</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+
+         <li class="nav-item">
+            <a class="nav-link" href="#">Fruits</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sea food</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Vegetables</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Blog</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<!-- Header End-->
+
+
+
+
+<div class="content ">
+    {% block content %}{% endblock %}
+</div>
+
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row bg-black">
+            <div class="col-12 text-white text-center">
+                <div class="shell">
+                    System Message: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function toggleSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.classList.toggle('expanded');
+    }
+
+</script>
+</body>
+</html>
