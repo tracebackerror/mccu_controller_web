@@ -2,7 +2,7 @@ import socket
 import csv
 import time
 from django.shortcuts import render
-
+from datetime import datetime
 from django.views.generic.base import View
 from django.shortcuts import render
 from django.views.generic import TemplateView
@@ -43,7 +43,7 @@ def stream_csv(request):
     response['Cache-Control'] = 'no-cache'
     response['Content-Type'] = 'text/event-stream'
     response['X-Accel-Buffering'] = 'no'  # Disable buffering for nginx
-
+    #response['Last-Modified'] = datetime.now().strftime('%a, %d %b %Y %H:%M:%S GMT')
     return response
 
 @login_required

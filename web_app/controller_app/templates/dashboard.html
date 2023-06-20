@@ -6,142 +6,171 @@
 
 
 <body>
-  <div class="container content-top">
-<!--    <ul class="nav nav-tabs" id="myTabs">-->
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link active" id="main-tab" data-toggle="tab" href="#main">Main</a>-->
-<!--      </li>-->
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link" id="satellite-tab" data-toggle="tab" href="#satellite">Satellite</a>-->
-<!--      </li>-->
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link" id="monitor-tab" data-toggle="tab" href="#monitor">Monitor</a>-->
-<!--      </li>-->
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link" id="diagnostic-tab" data-toggle="tab" href="#diagnostic">Diagnostic</a>-->
-<!--      </li>-->
-<!--    </ul>-->
+<div class="container content-top">
+    <!--    <ul class="nav nav-tabs" id="myTabs">-->
+    <!--      <li class="nav-item">-->
+    <!--        <a class="nav-link active" id="main-tab" data-toggle="tab" href="#main">Main</a>-->
+    <!--      </li>-->
+    <!--      <li class="nav-item">-->
+    <!--        <a class="nav-link" id="satellite-tab" data-toggle="tab" href="#satellite">Satellite</a>-->
+    <!--      </li>-->
+    <!--      <li class="nav-item">-->
+    <!--        <a class="nav-link" id="monitor-tab" data-toggle="tab" href="#monitor">Monitor</a>-->
+    <!--      </li>-->
+    <!--      <li class="nav-item">-->
+    <!--        <a class="nav-link" id="diagnostic-tab" data-toggle="tab" href="#diagnostic">Diagnostic</a>-->
+    <!--      </li>-->
+    <!--    </ul>-->
 
     <div class="tab-content mt-3">
-      <!-- Main Tab -->
-      <div class="tab-pane fade show active" id="main">
-        <div class="row">
-          <!-- Left Section -->
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="card-body">
-                <!-- ADE Status -->
-                <h5 class="card-title">ADE Status</h5>
-                <p>Date: <span id="date"></span></p>
-                <p>Time: <span id="time"></span></p>
-                <p>Latitude: <span id="latitude"></span></p>
-                <p>Longitude: <span id="longitude"></span></p>
-                <p>Roll: <span id="roll"></span></p>
-                <p>Pitch: <span id="pitch"></span></p>
-                <p>Yaw: <span id="yaw"></span></p>
-
-               
-
-                <!-- Add more fields as needed -->
-
-                <!-- Antenna Position -->
-                <h5 class="card-title">Antenna Position</h5>
-                <p >Azimuth: <span id="azimuth"></span></p>
-                <p>Elevation: <span id="elevation"></span></p>
-                <p>Cross-EL: <span id="crossel"></span></p>
-                <p>Polarization: <span id="polarization"></span></p>
-                <!-- Add more fields as needed -->
-
-                <!-- Antenna Target -->
-                <h5 class="card-title">Antenna Target</h5>
-                <p>Azimuth: <span id="antenna_target_azimuth"></span></p>
-                <p>Elevation: <span id="antenna_target_elevation"></span></p>
-                <p>Polarization: <span id="antenna_target_polarization"></span></p>
-                <!-- Add more fields as needed -->
-              </div>
-            </div>
-          </div>
-
-          <!-- Center Section -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <!-- Antenna Chart -->
-                <h5 class="card-title">Antenna Chart</h5>
-                <div id="antenna-chart">
+        <!-- Main Tab -->
+        <div class="tab-pane fade show active" id="main">
+            <div class="row">
+                <!-- Left Section -->
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- ADE Status -->
+                            <h5 class="card-title">ADE Status</h5>
+                            <p>Date: <span id="date"></span></p>
+                            <p>Time: <span id="time"></span></p>
+                            <p>Latitude: <span id="latitude"></span></p>
+                            <p>Longitude: <span id="longitude"></span></p>
+                            <p>Roll: <span id="roll"></span></p>
+                            <p>Pitch: <span id="pitch"></span></p>
+                            <p>Yaw: <span id="yaw"></span></p>
 
 
+                            <!-- Add more fields as needed -->
+
+                            <!-- Antenna Position -->
+                            <h5 class="card-title">Antenna Position</h5>
+                            <p>Azimuth: <span id="azimuth"></span></p>
+                            <p>Elevation: <span id="elevation"></span></p>
+                            <p>Cross-EL: <span id="crossel"></span></p>
+                            <p>Polarization: <span id="polarization"></span></p>
+                            <!-- Add more fields as needed -->
+
+                            <!-- Antenna Target -->
+                            <h5 class="card-title">Antenna Target</h5>
+                            <p>Azimuth: <span id="antenna_target_azimuth"></span></p>
+                            <p>Elevation: <span id="antenna_target_elevation"></span></p>
+                            <p>Polarization: <span id="antenna_target_polarization"></span></p>
+                            <!-- Add more fields as needed -->
+                        </div>
+                    </div>
                 </div>
-                <script>
+
+                <!-- Center Section -->
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                             <div class="temp">
+                                        <div class="temp__logo">Temperature</div>
+                                        <div class="temp__comet"></div>
+                                        <canvas class="temp__fizz"></canvas>
+                                        <div class="temp__label">Temp</div>
+                                        <div class="temp__value"><span id="temp"></span></div>
+                                        <div class="temp__dial"></div>
+                             </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                             <div class="temp">
+                                        <div class="temp__logo">Current</div>
+                                        <div class="temp__comet"></div>
+                                        <canvas class="temp__fizz"></canvas>
+                                        <div class="temp__label">Kw</div>
+                                        <div class="temp__value"><span id="current"></span></div>
+                                        <div class="temp__dial"></div>
+                             </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Antenna Chart -->
+                            <h5 class="card-title">Antenna Chart</h5>
+                            <div id="antenna-chart">
+
+
+                            </div>
+                            <script>
                   // Replace with your chart code or embed a plot here
-                </script>
 
-                <!-- Commands -->
-                <h5 class="card-title">Commands</h5>
-                <button class="btn btn-primary">ADE COMM</button>
-                <button class="btn btn-primary">GPS</button>
-                <button class="btn btn-primary">OSU</button>
-                <button class="btn btn-primary">BEACON PWR</button>
-                <button class="btn btn-primary">FIBER LINK</button>
-                <!-- Add more buttons as needed -->
-              </div>
-            </div>
-          </div>
+                            </script>
 
-          <!-- Right Section -->
-          <div class="col-lg-3">
-            <div class="card">
-              <div class="card-body">
-                <!-- Satellite Information -->
-                <h5 class="card-title">Satellite Information</h5>
-                <p>Satellite: <span id="satellite"></span></p>
-                <p>Channel: <span id="channel"></span></p>
-                <!-- Add more fields as needed -->
+                            <!-- Commands -->
+                            <h5 class="card-title">Commands</h5>
+                            <button class="btn btn-primary">ADE COMM</button>
+                            <button class="btn btn-primary">GPS</button>
+                            <button class="btn btn-primary">OSU</button>
+                            <button class="btn btn-primary">BEACON PWR</button>
+                            <button class="btn btn-primary">FIBER LINK</button>
+                            <!-- Add more buttons as needed -->
+                        </div>
+                    </div>
+                </div>
 
-                <!-- Beacon Power Chart -->
-<!--                <h5 class="card-title">Beacon Power Chart</h5>-->
+                <!-- Right Section -->
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Satellite Information -->
+                            <h5 class="card-title">Satellite Information</h5>
+                            <p>Satellite: <span id="satellite_name"></span></p>
+                            <p>Channel: <span id="channel"></span></p>
+                            <!-- Add more fields as needed -->
 
-                <div id="chartContainer">
-                  <div id="beacon-power-chart" style="width: 100%; height: 100%;"></div>
-              </div>
+                            <!-- Beacon Power Chart -->
+                            <!--                <h5 class="card-title">Beacon Power Chart</h5>-->
 
-                <script>
+                            <div id="chartContainer">
+                                <div id="beacon-power-chart" style="width: 100%; height: 100%;"></div>
+                            </div>
+
+                            <script>
                   // Replace with your chart code or embed a plot here
 
-                </script>
 
-                <!-- Current Consumption -->
-                <h5 class="card-title">Current Consumption</h5>
-                <p>Motor Azimuth: <span id="motor_azimuth"></span></p>
-                <p>Motor Elevation: <span id="motor_elevation"></span></p>
-                <p>Motor Cross EL: <span id="motor_cross_el"></span></p>
-                <p>Motor Polarization: <span id="motor_polarization"></span></p>
-                <!-- Add more fields as needed -->
-              </div>
+                            </script>
+
+                            <!-- Current Consumption -->
+                            <h5 class="card-title">Current Consumption</h5>
+                            <p>Motor Azimuth: <span id="motor_azimuth"></span></p>
+                            <p>Motor Elevation: <span id="motor_elevation"></span></p>
+                            <p>Motor Cross EL: <span id="motor_cross_el"></span></p>
+                            <p>Motor Polarization: <span id="motor_polarization"></span></p>
+                            <!-- Add more fields as needed -->
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
 
-      <!-- Satellite Tab -->
-      <div class="tab-pane fade" id="satellite">
-        <!-- Content for Satellite Tab -->
-      </div>
+        <!-- Satellite Tab -->
+        <div class="tab-pane fade" id="satellite">
+            <!-- Content for Satellite Tab -->
+        </div>
 
-      <!-- Monitor Tab -->
-      <div class="tab-pane fade" id="monitor">
-        <!-- Content for Monitor Tab -->
-      </div>
+        <!-- Monitor Tab -->
+        <div class="tab-pane fade" id="monitor">
+            <!-- Content for Monitor Tab -->
+        </div>
 
-      <!-- Diagnostic Tab -->
-      <div class="tab-pane fade" id="diagnostic">
-        <!-- Content for Diagnostic Tab -->
-      </div>
+        <!-- Diagnostic Tab -->
+        <div class="tab-pane fade" id="diagnostic">
+            <!-- Content for Diagnostic Tab -->
+        </div>
     </div>
-  </div>
+</div>
 
-  <!-- Initialize Bootstrap Tabs -->
-  <script>
+<!-- Initialize Bootstrap Tabs -->
+<script>
     $(document).ready(function () {
       $('#myTabs').tab();
     });
@@ -149,10 +178,11 @@
 
 
 
-  </script>
+
+</script>
 
 
-  <script>
+<script>
         // Initialize the chart
         var chart = echarts.init(document.getElementById('beacon-power-chart'));
 
@@ -230,8 +260,8 @@
         // Update chart data every 2 seconds
         setInterval(updateChartData, 2000);
 
-    </script>
 
+</script>
 
 
 {% endblock %}

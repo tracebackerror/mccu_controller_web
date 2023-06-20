@@ -14,10 +14,20 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.1.2/dist/echarts.min.js"></script>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <style>
+    /* Chart */
+    #chartContainer {
+            width: 220px;
+            height: 400px;
+            padding: 0 10px;
+        }
+
+
+     /* END CHART*/
 
  /* Footer */
   html {
@@ -325,7 +335,7 @@ li {
     padding:0px;
 }
 .content-top {
-    margin-top: 5em;
+    margin-top: 1em;
 }
 /* Hedare End */
 
@@ -346,12 +356,113 @@ li {
 
      .terminal-div {
       background-color: #000000;
-      font-size:10px;
+      font-size:5px;
       color: #ffff00;
         padding-left: 1em;
       border: 5px solid rgba(0, 0, 0, 0.2);
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
     }
+
+.temp {
+	--angle: 0;
+	--hue: 240;
+	background-image:
+		radial-gradient(
+			100% 100% at 50% 50%,
+			hsl(var(--hue),90%,17%) 3.55em,
+			hsla(var(--hue),90%,17%,0) 3.6em
+		),
+		radial-gradient(
+			100% 100% at 50% 50%,
+			hsl(var(--hue),90%,10%),
+			hsl(var(--hue),90%,23%) 4.65em,
+			hsl(var(--hue),90%,55%) 4.85em 4.9em,
+			#17181c 5.1em 6.85em,
+			#17181c00 6.9em
+		),
+		radial-gradient(100% 100% at 50% 0,#f1f2f4,#8f95a3);
+    border-radius: 50%;
+    box-shadow: 0 -0.25em 1.5em 0.5em #0004;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    position: relative;
+    padding: 1em;
+    text-align: center;
+    width: 15em;
+    height: 15em;
+}
+.temp:after, .temp__dial, .temp__comet, .temp__fizz {
+	position: absolute;
+}
+.temp:after, .temp__comet, .temp__dial {
+	border-radius: inherit;
+}
+.temp:after, .temp__dial {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.temp:after {
+	background:
+		radial-gradient(100% 100% at 67% 17%,#fff3,#fff0 6em);
+	content: "";
+	display: block;
+	z-index: 2;
+}
+.temp__logo {
+	font-family: "Baloo Paaji 2", sans-serif;
+	color: #abafba;
+	letter-spacing: -0.1em;
+	margin-bottom: 3.75em;
+	text-transform: lowercase;
+	transform: scaleY(1.1);
+}
+.temp__comet {
+	background:
+		radial-gradient(
+			100% 100% at 50% 50%,
+			hsl(var(--hue),90%,10%),
+			hsl(var(--hue),90%,20%) 3.25em,
+			hsl(var(--hue),90%,17%) 3.3em 3.35em,
+			hsla(var(--hue),90%,17%,0) 3.4em
+		),
+		conic-gradient(#fff0,#fff calc(1deg * var(--angle)),#fff0 calc(1deg * var(--angle)));
+	top: calc(50% - 3.5em);
+	left: calc(50% - 3.5em);
+	width: 7em;
+	height: 7em;
+}
+.temp__fizz {
+	display: block;
+	top: calc(50% - 3.3em);
+	left: calc(50% - 3.3em);
+	width: 6.6em;
+	height: 6.6em;
+}
+.temp__label, .temp__value {
+	color: #fff;
+	font-family: "Unica One", monospace;
+	position: relative;
+	z-index: 1;
+}
+.temp__label {
+	font-size: 0.6em;
+	letter-spacing: 0.5em;
+	text-transform: uppercase;
+	transform: translateX(0.25em) scaleY(0.9);
+}
+.temp__value {
+	font-size: 2.5em;
+}
+.temp__dial {
+	cursor: grab;
+	z-index: 3;
+}
+.temp__dial:active {
+	cursor: grabbing;
+}
 
     </style>
 </head>
@@ -514,33 +625,63 @@ li {
       sidebar.classList.toggle('expanded');
     }
 
-const eventSource = new EventSource('http://127.0.0.1:8000/csv_stream');
+    const eventSource = new EventSource('http://127.0.0.1:8000/csv_stream');
 
-const outputDiv = document.getElementById('stream-output');
+    const outputDiv = document.getElementById('stream-output');
 
-eventSource.onmessage = function(event) {
-  const data = event.data;
-  const columns = data.split(','); // Split the CSV data into columns
+    eventSource.onmessage = function(event) {
+      const data = event.data;
+      const columns = data.split(','); // Split the CSV data into columns
 
-  // Clear the existing data
-  outputDiv.innerHTML = '';
+      // Clear the existing data
+      outputDiv.innerHTML = '';
 
-  // Create a container element to hold the columns
-  const row = document.createElement('div');
-  row.className = 'row';
+      // Create a container element to hold the columns
+      const row = document.createElement('div');
+      row.className = 'row';
 
-   $("#azimuth").text(columns[0]);
-   $("#elevation").text(columns[1]);
+       $("#date").text(columns[0]);
+       $("#time").text(columns[1]);
 
-  // Render each column in a separate HTML element
-  columns.forEach(function(columnData) {
-    const column = document.createElement('p');
-    column.textContent = columnData +"-*-";
-    row.appendChild(column);
-  });
+       $("#latitude").text(columns[2]);
+       $("#longitude").text(columns[3]);
 
-  outputDiv.appendChild(row); // Append the row to the output container
-};
+       $("#roll").text(columns[4]);
+       $("#pitch").text(columns[5]);
+       $("#yaw").text(columns[6]);
+
+       $("#temp").text(columns[7]);
+       $("#current").text(columns[8]);
+
+       $("#azimuth").text(columns[9]);
+       $("#elevation").text(columns[10]);
+       $("#crossel").text(columns[11]);
+       $("#polarization").text(columns[12]);
+
+       $("#antenna_target_azimuth").text(columns[13]);
+       $("#antenna_target_elevation").text(columns[14]);
+       $("#antenna_target_polarization").text(columns[15]);
+
+
+       $("#satellite_name").text(columns[16]);
+       $("#channel").text(columns[17]);
+
+
+       $("#motor_azimuth").text(columns[18]);
+       $("#motor_elevation").text(columns[19]);
+       $("#motor_cross_el").text(columns[20]);
+       $("#motor_polarization").text(columns[21]);
+
+
+      // Render each column in a separate HTML element
+      columns.forEach(function(columnData) {
+        const column = document.createElement('p');
+        column.textContent = columnData +"-*-";
+        row.appendChild(column);
+      });
+
+      outputDiv.appendChild(row); // Append the row to the output container
+    };
 
 
 </script>
