@@ -26,7 +26,7 @@ from django.views.decorators.http import condition
 
 from django.http import StreamingHttpResponse
 from django.shortcuts import render
-from .models import Satellite
+from .models import Satellite, SafeMode
 
 @login_required
 def satellite_list(request):
@@ -89,6 +89,61 @@ def restart_command(request):
             messages.success(request,
                            'Restart Command Sent.')
             print('Received', repr(data))
+    else:
+        messages.error(request, 'SLSC Is Not Configured. Please configure SLSC IP in Settings > SLSC Network Settings.')
+
+    return redirect("/dashboard")
+
+
+@login_required
+def home_command(request):
+    slsc_ip_details = SLSCNetworkSettings.objects.first()
+
+    if slsc_ip_details:
+        if request.method == "POST":
+
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.connect((slsc_ip_details.ip_address, int(slsc_ip_details.port_number)))
+
+                msg = bytearray([177, 2])
+                crc = Crc16.calc(msg)
+                msg += crc.to_bytes(2, 'big')
+                print(msg)
+                s.sendall(msg)
+            messages.success(request,
+                           'Home Command Sent.')
+            print('Received', repr(data))
+    else:
+        messages.error(request, 'SLSC Is Not Configured. Please configure SLSC IP in Settings > SLSC Network Settings.')
+
+    return redirect("/dashboard")
+
+
+@login_required
+def safemode_command(request):
+    slsc_ip_details = SLSCNetworkSettings.objects.first()
+
+    if slsc_ip_details:
+        if request.method == "POST":
+            safe_mode_obj = SafeMode.objects.first()
+            if safe_mode_obj and safe_mode_obj.password == request.POST.get("password", None):
+
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+
+                    s.connect((slsc_ip_details.ip_address, int(slsc_ip_details.port_number)))
+
+
+                    msg = bytearray([177, 5])
+                    crc = Crc16.calc(msg)
+                    msg += crc.to_bytes(2, 'big')
+                    print(msg)
+                    s.sendall(msg)
+
+                messages.success(request,
+                               'SafeMode Command Sent.')
+            else:
+                messages.error(request,
+                                 'SafeMode Password Incorrect.')
     else:
         messages.error(request, 'SLSC Is Not Configured. Please configure SLSC IP in Settings > SLSC Network Settings.')
 

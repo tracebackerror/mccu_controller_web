@@ -9,6 +9,8 @@ class Satellite(models.Model):
     tx_polarization = models.CharField(max_length=200, verbose_name="Tx Polarization")
     time = models.CharField(max_length=200, verbose_name="Time")
 
+class SafeMode(models.Model):
+    password = models.CharField(max_length=200, verbose_name="SafeMode Password")
 
 class SLSCNetworkSettings(models.Model):
     ip_address = models.CharField(max_length=12)

@@ -15,13 +15,13 @@ headers = [
 
 # Define the CSV file path
 csv_file_path = "data.csv"
-
+while True:
 # Generate and write infinite loop CSV data
-with open(csv_file_path, mode='w', newline='') as csv_file:
-    writer = csv.writer(csv_file)
-    writer.writerow(headers)  # Write the column headers
+    with open(csv_file_path, mode='w', newline='') as csv_file:
+        writer = csv.writer(csv_file)
+        #writer.writerow(headers)  # Write the column headers
 
-    while True:
+
         # Generate a random datetime
         current_datetime = datetime.datetime.now().strftime("%Y-%m-%d,%H:%M:%S")
 
@@ -54,4 +54,4 @@ with open(csv_file_path, mode='w', newline='') as csv_file:
         ]
         writer.writerow(row)
 
-        time.sleep(3)
+    time.sleep(3)
