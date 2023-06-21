@@ -9,7 +9,6 @@
     <link href="{% static 'css/all.min.css' %}" rel="stylesheet">
 
 
-
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
@@ -469,6 +468,25 @@ li {
         .button-group form {
             margin-right: 10px;
         }
+.led {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border-radius: 50%;
+  opacity: 0;
+  animation: blink-animation 1s forwards;
+}
+
+@keyframes blink-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
 
     </style>
 </head>
@@ -477,7 +495,11 @@ li {
     <ul class="nav flex-column">
         <li class="nav-item">
             <button class="nav-link active btn-center-icon" type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M192 32c0-17.7 14.3-32 32-32C383.1 0 512 128.9 512 288c0 17.7-14.3 32-32 32s-32-14.3-32-32C448 164.3 347.7 64 224 64c-17.7 0-32-14.3-32-32zM60.6 220.6L164.7 324.7l28.4-28.4c-.7-2.6-1.1-5.4-1.1-8.3c0-17.7 14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32c-2.9 0-5.6-.4-8.3-1.1l-28.4 28.4L291.4 451.4c14.5 14.5 11.8 38.8-7.3 46.3C260.5 506.9 234.9 512 208 512C93.1 512 0 418.9 0 304c0-26.9 5.1-52.5 14.4-76.1c7.5-19 31.8-21.8 46.3-7.3zM224 96c106 0 192 86 192 192c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-70.7-57.3-128-128-128c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>
+                <svg height="1.5em" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <style>svg{fill:#ffffff}</style>
+                    <path d="M192 32c0-17.7 14.3-32 32-32C383.1 0 512 128.9 512 288c0 17.7-14.3 32-32 32s-32-14.3-32-32C448 164.3 347.7 64 224 64c-17.7 0-32-14.3-32-32zM60.6 220.6L164.7 324.7l28.4-28.4c-.7-2.6-1.1-5.4-1.1-8.3c0-17.7 14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32c-2.9 0-5.6-.4-8.3-1.1l-28.4 28.4L291.4 451.4c14.5 14.5 11.8 38.8-7.3 46.3C260.5 506.9 234.9 512 208 512C93.1 512 0 418.9 0 304c0-26.9 5.1-52.5 14.4-76.1c7.5-19 31.8-21.8 46.3-7.3zM224 96c106 0 192 86 192 192c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-70.7-57.3-128-128-128c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/>
+                </svg>
                 <span class="menu-text badge badge-dark">
           <span class="badge-triangle"></span>
           Tantrayut Telecom.
@@ -488,7 +510,11 @@ li {
             <form action="/home" method="POST">
                 {% csrf_token %}
                 <button class="nav-link btn-center-icon" type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg>
+                    <svg height="1.5em" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                        <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>svg{fill:#ffffff}</style>
+                        <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+                    </svg>
                     <span class="menu-text badge badge-dark">
                   <span class="badge-triangle"></span>
                   Home
@@ -499,20 +525,28 @@ li {
         <li class="nav-item">
             <form action="/restart" method="POST">
                 {% csrf_token %}
-                    <button class="nav-link btn-center-icon" type="submit">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160H336c-17.7 0-32 14.3-32 32s14.3 32 32 32H463.5c0 0 0 0 0 0h.4c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v51.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1V448c0 17.7 14.3 32 32 32s32-14.3 32-32V396.9l17.6 17.5 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352H176c17.7 0 32-14.3 32-32s-14.3-32-32-32H48.4c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z"/></svg>
-                        <span class="menu-text badge badge-dark">
+                <button class="nav-link btn-center-icon" type="submit">
+                    <svg height="1.5em" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                        <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>svg{fill:#ffffff}</style>
+                        <path d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160H336c-17.7 0-32 14.3-32 32s14.3 32 32 32H463.5c0 0 0 0 0 0h.4c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v51.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1V448c0 17.7 14.3 32 32 32s32-14.3 32-32V396.9l17.6 17.5 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352H176c17.7 0 32-14.3 32-32s-14.3-32-32-32H48.4c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z"/>
+                    </svg>
+                    <span class="menu-text badge badge-dark">
                         <span class="badge-triangle"></span>
                             Restart
                         </span>
-                    </button>
+                </button>
             </form>
         </li>
         <li class="nav-item">
             <form action="/shutdown" method="POST">
                 {% csrf_token %}
                 <button class="nav-link btn-center-icon" type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"/></svg>
+                    <svg height="1.5em" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                        <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>svg{fill:#ffffff}</style>
+                        <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"/>
+                    </svg>
                     <span class="menu-text badge badge-dark">
                   <span class="badge-triangle"></span>
                   Shutdown
@@ -521,8 +555,12 @@ li {
             </form>
         </li>
         <li class="nav-item">
-            <button class="nav-link btn-center-icon" type="button" data-toggle="modal" data-target="#safe_mode_modal">
-                <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#f7f7f7}</style><path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0z"/></svg>
+            <button class="nav-link btn-center-icon" data-target="#safe_mode_modal" data-toggle="modal" type="button">
+                <svg height="1.5em" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <style>svg{fill:#f7f7f7}</style>
+                    <path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0z"/>
+                </svg>
                 <span class="menu-text badge badge-dark">
           <span class="badge-triangle"></span>
           Safe Mode
@@ -531,7 +569,11 @@ li {
         </li>
         <li class="nav-item">
             <a class="nav-link btn-center-icon" href="settings">
-                <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#fafafa}</style><path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/></svg>
+                <svg height="1.5em" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <style>svg{fill:#fafafa}</style>
+                    <path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/>
+                </svg>
                 <span class="menu-text badge badge-dark">
                   <span class="badge-triangle"></span>
                   Settings
@@ -540,7 +582,11 @@ li {
         </li>
         <li class="nav-item">
             <a class="nav-link btn-center-icon" href="/profile">
-                <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ededed}</style><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+                <svg height="1.5em" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                    <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <style>svg{fill:#ededed}</style>
+                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                </svg>
                 <span class="menu-text badge badge-dark ">
                   <span class="badge-triangle"></span>
                   Profile
@@ -551,7 +597,11 @@ li {
             <form action="/logout" method="POST">
                 {% csrf_token %}
                 <button class="btn nav-link btn-center-icon" type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg>
+                    <svg height="1.5em" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                        <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>svg{fill:#ffffff}</style>
+                        <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/>
+                    </svg>
                     <span class="menu-text badge badge-dark">
                     <span class="badge-triangle"></span>
                         Logout
@@ -565,101 +615,391 @@ li {
 <!-- Header -->
 
 
-
-
-
-<div class="content main-dashbaord" >
+<div class="content main-dashbaord">
     <!-- Navigation -->
-<div class="fixed-top-1">
+    <div class="fixed-top-1">
 
-  <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
-    <div class="container">
-      <a class="navbar-brand" href="index.html" style="text-transform: uppercase;"> TANTRAYUT TELECOMMUNICATIONS MCCU</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+            <div class="container">
+                <a class="navbar-brand" href="index.html" style="text-transform: uppercase;"> TANTRAYUT
+                    TELECOMMUNICATIONS MCCU</a>
+                <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                        data-target="#navbarResponsive" data-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
 
-        <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto">
 
-          <li class="nav-item ">
-            <a class="nav-link" href="/dashboard">Dashboard</a>
-          </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/dashboard">Dashboard</a>
+                        </li>
 
-           <li class="nav-item ">
-            <a class="nav-link" href="/satellites">Satellite</a>
-          </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/satellites">Satellite</a>
+                        </li>
 
-            <li class="nav-item ">
-            <a class="nav-link" href="/dashboard">Monitor</a>
-          </li>
-            <li class="nav-item ">
-            <a class="nav-link" href="/dashboard">Diagnostic</a>
-          </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/dashboard">Monitor</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/dashboard">Diagnostic</a>
+                        </li>
 
-        </ul>
-      </div>
-    </div>
-  </nav>
-</div>
-<!-- Header End-->
-          <div class="row">
-            <div class="col-md-6 offset-md-3">
-              {% if messages %}
-                  <ul class="messages">
-                    {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }} alert alert-primary " {% endif %} role="alert">{{ message }}</li>
-                    {% endfor %}
-                  </ul>
-                  {% endif %}
+                    </ul>
+                </div>
             </div>
-      </div>
+        </nav>
+    </div>
+    <!-- Header End-->
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li
+                class="{{ message.tags }} alert alert-primary " endif if message.tags role="alert" {% {%>{{message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
     {% block content %}{% endblock %}
 </div>
 
 <div class="inset-footer">
     <div class="container">
-      <div class="row">
-        <div class="col-2">
-          <i class="fa fa-ship"></i>
-            Terminal Output
+        <div class="row">
+            <div class="col-1">
+                <div class="led">
+
+                    <svg
+                            id="svg7041"
+                            inkscape:version="0.47 r22583"
+                            sodipodi:docname="led_green_black.svg"
+                            version="1.1"
+                            viewBox="0 0 6 6"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:cc="http://creativecommons.org/ns#"
+                            xmlns:dc="http://purl.org/dc/elements/1.1/"
+                            xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+                            xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                            xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+                    >
+                        <defs
+                                id="defs7043"
+                        >
+                            <radialGradient
+                                    cx="47.5"
+                                    cy="21.5"
+                                    gradientUnits="userSpaceOnUse"
+                                    id="radialGradient7003"
+                                    inkscape:collect="always"
+                                    r="2.5"
+                            >
+                                <stop
+                                        id="stop6999"
+                                        offset="0"
+                                        style="stop-color:#00c300;stop-opacity:0"
+                                />
+                                <stop
+                                        id="stop7005"
+                                        offset="0.82"
+                                        style="stop-color:#00c300;stop-opacity:.49804"
+                                />
+                                <stop
+                                        id="stop7001"
+                                        offset="1"
+                                        style="stop-color:#aeffae"
+                                />
+                            </radialGradient
+                            >
+                            <radialGradient
+                                    cx="47.5"
+                                    cy="21.5"
+                                    gradientUnits="userSpaceOnUse"
+                                    id="radialGradient6993"
+                                    inkscape:collect="always"
+                                    r="2.5"
+                            >
+                                <stop
+                                        id="stop6245"
+                                        offset="0"
+                                        style="stop-color:#ffffff"
+                                />
+                                <stop
+                                        id="stop6247"
+                                        offset="1"
+                                        style="stop-color:#0dee1b;stop-opacity:0"
+                                />
+                            </radialGradient
+                            >
+                            <radialGradient
+                                    cx="-87.5"
+                                    cy="62.5"
+                                    gradientUnits="userSpaceOnUse"
+                                    id="radialGradient7039"
+                                    inkscape:collect="always"
+                                    r="2.5"
+                            >
+                                <stop
+                                        id="stop6193-9"
+                                        offset="0"
+                                        style="stop-color:#000000"
+                                />
+                                <stop
+                                        id="stop6203-9"
+                                        offset=".51649"
+                                        style="stop-color:#000000"
+                                />
+                                <stop
+                                        id="stop6199-8"
+                                        offset="0.76"
+                                        style="stop-color:#a6a6a6"
+                                />
+                                <stop
+                                        id="stop6201-0"
+                                        offset="0.9"
+                                        style="stop-color:#353535"
+                                />
+                                <stop
+                                        id="stop6195-0"
+                                        offset="1"
+                                        style="stop-color:#000000"
+                                />
+                            </radialGradient
+                            >
+                        </defs
+                        >
+                        <sodipodi:namedview
+                                bordercolor="#666666"
+                                borderopacity="1.0"
+                                id="base"
+                                inkscape:current-layer="layer1"
+                                inkscape:cx="6.5416986"
+                                inkscape:cy="3.3174563"
+                                inkscape:document-units="px"
+                                inkscape:pageopacity="0.0"
+                                inkscape:pageshadow="2"
+                                inkscape:window-height="1043"
+                                inkscape:window-maximized="0"
+                                inkscape:window-width="1154"
+                                inkscape:window-x="107"
+                                inkscape:window-y="69"
+                                inkscape:zoom="52.58046"
+                                pagecolor="#ffffff"
+                                showgrid="false"
+                        />
+                        <g
+                                id="layer1"
+                                inkscape:groupmode="layer"
+                                inkscape:label="Layer 1"
+                                transform="translate(-437 -640.79)"
+                        >
+                            <path
+                                    d="m-85 62.5c0 1.3807-1.1193 2.5-2.5 2.5s-2.5-1.1193-2.5-2.5 1.1193-2.5 2.5-2.5 2.5 1.1193 2.5 2.5z"
+                                    id="path6189-3"
+                                    sodipodi:cx="-87.5"
+                                    sodipodi:cy="62.5"
+                                    sodipodi:rx="2.5"
+                                    sodipodi:ry="2.5"
+                                    sodipodi:type="arc"
+                                    style="fill:url(#radialGradient7039)"
+                                    transform="matrix(1.2 0 0 1.2 545 568.79)"
+                            />
+                            <path
+                                    d="m50 21.5c0 1.381-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5 1.119-2.5 2.5-2.5c1.3807 0 2.5 1.1193 2.5 2.5z"
+                                    id="path6983"
+                                    sodipodi:cx="47.5"
+                                    sodipodi:cy="21.5"
+                                    sodipodi:rx="2.5"
+                                    sodipodi:ry="2.5"
+                                    sodipodi:type="arc"
+                                    style="fill:#00c300"
+                                    transform="translate(392.5 622.29)"
+                            />
+                            <path
+                                    d="m50 21.5c0 1.381-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5 1.119-2.5 2.5-2.5c1.3807 0 2.5 1.1193 2.5 2.5z"
+                                    id="path6985"
+                                    sodipodi:cx="47.5"
+                                    sodipodi:cy="21.5"
+                                    sodipodi:rx="2.5"
+                                    sodipodi:ry="2.5"
+                                    sodipodi:type="arc"
+                                    style="fill:url(#radialGradient6993)"
+                                    transform="translate(392.9 621.89)"
+                            />
+                            <path
+                                    d="m50 21.5c0 1.381-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5 1.119-2.5 2.5-2.5c1.3807 0 2.5 1.1193 2.5 2.5z"
+                                    id="path6995"
+                                    sodipodi:cx="47.5"
+                                    sodipodi:cy="21.5"
+                                    sodipodi:rx="2.5"
+                                    sodipodi:ry="2.5"
+                                    sodipodi:type="arc"
+                                    style="fill:url(#radialGradient7003)"
+                                    transform="translate(392.5 622.29)"
+                            />
+                        </g
+                        >
+                        <metadata
+                        >
+                            <rdf:RDF
+                            >
+                                <cc:Work
+                                >
+                                    <dc:format
+                                    >image/svg+xml
+                                    </dc:format
+                                    >
+                                    <dc:type
+                                            rdf:resource="http://purl.org/dc/dcmitype/StillImage"
+                                    />
+                                    <cc:license
+                                            rdf:resource="http://creativecommons.org/licenses/publicdomain/"
+                                    />
+                                    <dc:publisher
+                                    >
+                                        <cc:Agent
+                                                rdf:about="http://openclipart.org/"
+                                        >
+                                            <dc:title
+                                            >Openclipart
+                                            </dc:title
+                                            >
+                                        </cc:Agent
+                                        >
+                                    </dc:publisher
+                                    >
+                                    <dc:title
+                                    >LED, Green
+                                    </dc:title
+                                    >
+                                    <dc:date
+                                    >2010-10-02T04:06:06
+                                    </dc:date
+                                    >
+                                    <dc:description
+                                    >A green LED with a black surround
+                                    </dc:description
+                                    >
+                                    <dc:source
+                                    >https://openclipart.org/detail/88117/led-green-by-bnielsen
+                                    </dc:source
+                                    >
+                                    <dc:creator
+                                    >
+                                        <cc:Agent
+                                        >
+                                            <dc:title
+                                            >bnielsen
+                                            </dc:title
+                                            >
+                                        </cc:Agent
+                                        >
+                                    </dc:creator
+                                    >
+                                    <dc:subject
+                                    >
+                                        <rdf:Bag
+                                        >
+                                            <rdf:li
+                                            >green
+                                            </rdf:li
+                                            >
+                                            <rdf:li
+                                            >led
+                                            </rdf:li
+                                            >
+                                            <rdf:li
+                                            >light
+                                            </rdf:li
+                                            >
+                                        </rdf:Bag
+                                        >
+                                    </dc:subject
+                                    >
+                                </cc:Work
+                                >
+                                <cc:License
+                                        rdf:about="http://creativecommons.org/licenses/publicdomain/"
+                                >
+                                    <cc:permits
+                                            rdf:resource="http://creativecommons.org/ns#Reproduction"
+                                    />
+                                    <cc:permits
+                                            rdf:resource="http://creativecommons.org/ns#Distribution"
+                                    />
+                                    <cc:permits
+                                            rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
+                                    />
+                                </cc:License
+                                >
+                            </rdf:RDF
+                            >
+                        </metadata
+                        >
+                    </svg
+                    >
+
+
+                </div>
+
+            </div>
+
+            <div class="col-2">
+
+                Terminal Output
+            </div>
+
+            <div class="col-9">
+
+                <div class="terminal-div display-stream-here" id="stream-output">
+                    This is a terminal-like div.
+                </div>
+            </div>
         </div>
-
-          <div class="col-10">
-
-            <div class="terminal-div display-stream-here" id="stream-output">
-                This is a terminal-like div.
-            </div>
-            </div>
-      </div>
     </div>
-  </div>
+</div>
 
 <!-- Modal -->
-<div class="modal fade" id="safe_mode_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Enter Safe Mode Password</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-        <form action="/safemode" method="POST">
-            {% csrf_token %}
-              <div class="modal-body">
-                <input type="password" name="password" class="form-control"/>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-        </form>
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="safe_mode_modal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Enter Safe Mode Password</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/safemode" method="POST">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <input class="form-control" name="password" type="password"/>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
 
 <script>
+
+    const led = document.querySelector('.led');
+
+function blinkOnce() {
+  led.style.opacity = '0';
+  led.style.animation = 'none';
+
+  setTimeout(() => {
+    led.style.animation = 'blink-animation 1s forwards';
+  }, 10);
+}
+
     function toggleSidebar() {
       const sidebar = document.querySelector('.sidebar');
       sidebar.classList.toggle('expanded');
@@ -679,6 +1019,9 @@ li {
       // Create a container element to hold the columns
       const row = document.createElement('div');
       row.className = 'row';
+      if (columns.length > 10) {
+        blinkOnce();
+      }
 
        $("#date").text(columns[0]);
        $("#time").text(columns[1]);
@@ -722,6 +1065,7 @@ li {
 
       outputDiv.appendChild(row); // Append the row to the output container
     };
+
 
 
 </script>
