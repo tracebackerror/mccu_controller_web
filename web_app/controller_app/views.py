@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.contrib import messages
 from django.contrib.auth.models import User
-
+from crccheck.crc import Crc16, CrcXmodem
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
@@ -80,9 +80,13 @@ def restart_command(request):
 
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 s.connect((slsc_ip_details.ip_address, int(slsc_ip_details.port_number)))
-                s.sendall(b'Hello, world')
-                data = s.recv(1024)
-            messages.suucess(request,
+
+                msg = bytearray([177, 3])
+                crc = Crc16.calc(msg)
+                msg += crc.to_bytes(2, 'big')
+                print(msg)
+                s.sendall(msg)
+            messages.success(request,
                            'Restart Command Sent.')
             print('Received', repr(data))
     else:
@@ -100,9 +104,14 @@ def shutdown_command(request):
 
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 s.connect((slsc_ip_details.ip_address, int(slsc_ip_details.port_number)))
-                s.sendall(b'Hello, world')
-                data = s.recv(1024)
-            messages.suucess(request,
+
+                msg = bytearray([177, 4])
+                crc = Crc16.calc(msg)
+                msg += crc.to_bytes(2, 'big')
+                print(msg)
+                s.sendall(msg)
+
+            messages.success(request,
                            'Shutdown Command Sent.')
             print('Received', repr(data))
     else:
