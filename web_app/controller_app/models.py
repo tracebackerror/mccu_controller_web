@@ -1,6 +1,13 @@
 from django.db import models
 
 
+class Satellite(models.Model):
+    satellite_name = models.CharField(max_length=200, verbose_name="Satellite Name")
+    longitude = models.CharField(max_length=200, verbose_name="Longitude")
+    local_frequency = models.CharField(max_length=200, verbose_name="Local Frequency")
+    rx_polarization = models.CharField(max_length=200, verbose_name="Rx Polarization")
+    tx_polarization = models.CharField(max_length=200, verbose_name="Tx Polarization")
+    time = models.CharField(max_length=200, verbose_name="Time")
 
 
 class SLSCNetworkSettings(models.Model):

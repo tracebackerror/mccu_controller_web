@@ -25,6 +25,31 @@ from django.views import View
 from django.views.decorators.http import condition
 
 from django.http import StreamingHttpResponse
+from django.shortcuts import render
+from .models import Satellite
+
+@login_required
+def satellite_list(request):
+    satellites = Satellite.objects.all()
+    return render(request, 'satellite_list.html', {'satellites': satellites})
+@login_required
+def get_satellite(request, satellite_id):
+    satellite = Satellite.objects.get(id=satellite_id)
+    # Perform the "get satellite" action here
+    return redirect('satellite_list')
+
+@login_required
+def set_satellite(request, satellite_id):
+    satellite = Satellite.objects.get(id=satellite_id)
+    # Perform the "set satellite" action here
+    return redirect('satellite_list')
+
+@login_required
+def load_satellite(request, satellite_id):
+    satellite = Satellite.objects.get(id=satellite_id)
+    # Perform the "load satellite" action here
+    return redirect('satellite_list')
+
 
 
 data = '/Users/tracebackerror/Documents/GitHub/mccu_controller_web/oneoff/data.csv'

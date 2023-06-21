@@ -13,4 +13,10 @@ urlpatterns = [
     path('settings', views.SettingsPage.as_view(), name="settings"),
     path('change_password/', views.change_password, name='change_password'),
     path('csv_stream', views.stream_csv, name='csv_stream'),
+
+    path('satellites/', views.satellite_list, name='satellite_list'),
+    path('satellites/<int:satellite_id>/get/', views.get_satellite, name='get_satellite'),
+    path('satellites/<int:satellite_id>/set/', views.set_satellite, name='set_satellite'),
+    path('satellites/<int:satellite_id>/load/', views.load_satellite, name='load_satellite'),
+
 ]

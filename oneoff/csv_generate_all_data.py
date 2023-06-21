@@ -1,6 +1,8 @@
 import csv
 import datetime
 import random
+import time
+
 
 # Define the column headers
 headers = [
@@ -51,3 +53,5 @@ with open(csv_file_path, mode='w', newline='') as csv_file:
             motor_azimuth, motor_elevation, motor_cross_el, motor_polarization
         ]
         writer.writerow(row)
+
+        time.sleep(3)
