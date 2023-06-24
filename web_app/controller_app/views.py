@@ -187,6 +187,24 @@ def change_password(request):
 
 
 
+class MonitorPage(TemplateView):
+    template_name = 'monitor.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs = super(MonitorPage, self).get_context_data(**kwargs)
+
+        #kwargs['foo'] = "bar"
+        return kwargs
+
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+
+        # previous_foo = context['foo']
+        # context['new_variable'] = 'new_variable' + ' updated'
+
+        return self.render_to_response(context)
+
+
 class LoginPage(TemplateView):
     template_name = 'index.html'
 

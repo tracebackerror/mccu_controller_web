@@ -18,7 +18,7 @@ try:
     host = "127.0.0.1"
     # host= socket.gethostname()
     print(host)
-    port = 9997
+    port = 9996
     s = socket.socket()
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     print("Socket formed ")

@@ -54,4 +54,4 @@ while True:
         ]
         writer.writerow(row)
 
-    time.sleep(3)
+    time.sleep(5)

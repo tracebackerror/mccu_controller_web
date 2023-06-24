@@ -6,6 +6,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.LoginPage.as_view(), name="login"),
     path('dashboard', views.DashboardPage.as_view(), name="login"),
+    path('monitor', views.MonitorPage.as_view(), name="login"),
     path('profile', views.ProfilePage.as_view(), name="profile"),
 
     path('safemode', views.safemode_command, name="safemode"),

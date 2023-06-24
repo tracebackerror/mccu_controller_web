@@ -262,6 +262,73 @@
 
 
 </script>
+<script type="text/javascript">
+$(document).ready(function () {
 
+    const eventSource = new EventSource('http://127.0.0.1:8000/csv_stream');
+
+    const outputDiv = document.getElementById('stream-output');
+
+    eventSource.onmessage = function(event) {
+      const data = event.data;
+      const columns = data.split(','); // Split the CSV data into columns
+
+      // Clear the existing data
+      outputDiv.innerHTML = '';
+
+      // Create a container element to hold the columns
+      const row = document.createElement('div');
+      row.className = 'row';
+      if (columns.length > 10) {
+        blinkOnce();
+      }
+
+       $("#date").text(columns[0]);
+       $("#time").text(columns[1]);
+
+       $("#latitude").text(columns[2]);
+       $("#longitude").text(columns[3]);
+
+       $("#roll").text(columns[4]);
+       $("#pitch").text(columns[5]);
+       $("#yaw").text(columns[6]);
+
+       $("#temp").text(columns[7]);
+       $("#current").text(columns[8]);
+
+       $("#azimuth").text(columns[9]);
+       $("#elevation").text(columns[10]);
+       $("#crossel").text(columns[11]);
+       $("#polarization").text(columns[12]);
+
+       $("#antenna_target_azimuth").text(columns[13]);
+       $("#antenna_target_elevation").text(columns[14]);
+       $("#antenna_target_polarization").text(columns[15]);
+
+
+       $("#satellite_name").text(columns[16]);
+       $("#channel").text(columns[17]);
+
+
+       $("#motor_azimuth").text(columns[18]);
+       $("#motor_elevation").text(columns[19]);
+       $("#motor_cross_el").text(columns[20]);
+       $("#motor_polarization").text(columns[21]);
+
+
+      // Render each column in a separate HTML element
+      columns.forEach(function(columnData) {
+        const column = document.createElement('p');
+        column.textContent = columnData +"-*-";
+        row.appendChild(column);
+      });
+
+      outputDiv.appendChild(row); // Append the row to the output container
+    };
+
+
+
+});
+</script>
 
 {% endblock %}

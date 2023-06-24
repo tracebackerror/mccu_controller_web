@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Page Title{% endblock %}
+
+{% block content %}
+
+
+<body>
+<div class="container-fluid content-top">
+
+    <table id="dataTable" class="table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Roll</th>
+          <th>Pitch</th>
+          <th>Yaw</th>
+          <th>Temperature</th>
+          <th>Current</th>
+          <th>Azimuth</th>
+          <th>Elevation</th>
+          <th>Crossel</th>
+          <th>Polarization</th>
+          <th>Antenna Target Azimuth</th>
+          <th>Antenna Target Elevation</th>
+          <th>Antenna Target Polarization</th>
+          <th>Satellite Name</th>
+          <th>Channel</th>
+          <th>Motor Azimuth</th>
+          <th>Motor Elevation</th>
+          <th>Motor Cross El</th>
+          <th>Motor Polarization</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Use JavaScript to dynamically populate the table rows -->
+      </tbody>
+    </table>
+
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+
+    const eventSource = new EventSource('http://127.0.0.1:8000/csv_stream');
+    const table = $('#dataTable').DataTable(); // Assuming you have a table with the ID 'dataTable'
+
+    eventSource.onmessage = function(event) {
+      const data = event.data;
+      const columns = data.split(','); // Split the CSV data into columns
+
+      // Create an array to hold the table row data
+      const rowData = [
+        columns[0], // Date
+        columns[1], // Time
+        columns[2], // Latitude
+        columns[3], // Longitude
+        columns[4], // Roll
+        columns[5], // Pitch
+        columns[6], // Yaw
+        columns[7], // Temperature
+        columns[8], // Current
+        columns[9], // Azimuth
+        columns[10], // Elevation
+        columns[11], // Crossel
+        columns[12], // Polarization
+        columns[13], // Antenna Target Azimuth
+        columns[14], // Antenna Target Elevation
+        columns[15], // Antenna Target Polarization
+        columns[16], // Satellite Name
+        columns[17], // Channel
+        columns[18], // Motor Azimuth
+        columns[19], // Motor Elevation
+        columns[20], // Motor Cross El
+        columns[21] // Motor Polarization
+      ];
+
+      table.row.add(rowData).draw(); // Add the row to the table and redraw
+
+      if (columns.length > 10) {
+        blinkOnce();
+      }
+
+      const outputDiv = document.getElementById('stream-output');
+      outputDiv.innerHTML = data;
+
+
+    };
+
+
+
+
+});
+</script>
+
+{% endblock %}

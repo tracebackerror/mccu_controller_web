@@ -3,7 +3,7 @@
 {% block title %}Satellite List{% endblock %}
 
 {% block content %}
-
+<div class="container">
  <h1>Satellite List</h1>
     <table class="table">
         <thead>
@@ -94,6 +94,46 @@
             {% endfor %}
         </tbody>
     </table>
+</div>
 
+
+<script type="text/javascript">
+$(document).ready(function () {
+
+    const eventSource = new EventSource('http://127.0.0.1:8000/csv_stream');
+
+    const outputDiv = document.getElementById('stream-output');
+
+    eventSource.onmessage = function(event) {
+      const data = event.data;
+      const columns = data.split(','); // Split the CSV data into columns
+
+      // Clear the existing data
+      outputDiv.innerHTML = '';
+
+      // Create a container element to hold the columns
+      const row = document.createElement('div');
+      row.className = 'row';
+      if (columns.length > 10) {
+        blinkOnce();
+      }
+
+
+
+
+      // Render each column in a separate HTML element
+      columns.forEach(function(columnData) {
+        const column = document.createElement('p');
+        column.textContent = columnData +"-*-";
+        row.appendChild(column);
+      });
+
+      outputDiv.appendChild(row); // Append the row to the output container
+    };
+
+
+
+});
+</script>
 
 {% endblock %}
