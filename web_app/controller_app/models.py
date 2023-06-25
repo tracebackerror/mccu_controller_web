@@ -3,11 +3,10 @@ from django.db import models
 
 class Satellite(models.Model):
     satellite_name = models.CharField(max_length=200, verbose_name="Satellite Name")
-    longitude = models.CharField(max_length=200, verbose_name="Longitude")
+    line1 = models.TextField(verbose_name="Line1")
+    line2 = models.TextField(verbose_name="Line2")
     local_frequency = models.CharField(max_length=200, verbose_name="Local Frequency")
-    rx_polarization = models.CharField(max_length=200, verbose_name="Rx Polarization")
-    tx_polarization = models.CharField(max_length=200, verbose_name="Tx Polarization")
-    time = models.CharField(max_length=200, verbose_name="Time")
+
 
 class SafeMode(models.Model):
     password = models.CharField(max_length=200, verbose_name="SafeMode Password")
