@@ -268,7 +268,9 @@ class ProfilePage(LoginRequiredMixin, TemplateView):
 
 
 
-
+class DiagnosticPage(LoginRequiredMixin, TemplateView):
+    template_name = 'diagnostic.html'
+    login_url = "/"
 
 
 class DashboardPage(LoginRequiredMixin, TemplateView):

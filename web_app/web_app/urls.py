@@ -8,6 +8,7 @@ urlpatterns = [
     path('dashboard', views.DashboardPage.as_view(), name="login"),
     path('monitor', views.MonitorPage.as_view(), name="login"),
     path('profile', views.ProfilePage.as_view(), name="profile"),
+    path('diagnostic', views.DiagnosticPage.as_view(), name="diagnostic"),
 
     path('safemode', views.safemode_command, name="safemode"),
     path('home', views.home_command, name="home"),
