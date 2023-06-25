@@ -103,18 +103,20 @@ def home_command(request):
 
     if slsc_ip_details:
         if request.method == "POST":
+            try:
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                    s.connect((slsc_ip_details.ip_address, int(slsc_ip_details.port_number)))
 
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                s.connect((slsc_ip_details.ip_address, int(slsc_ip_details.port_number)))
-
-                msg = bytearray([177, 2])
-                crc = Crc16.calc(msg)
-                msg += crc.to_bytes(2, 'big')
-                print(msg)
-                s.sendall(msg)
-            messages.success(request,
-                           'Home Command Sent.')
-            print('Received', repr(data))
+                    msg = bytearray([177, 2])
+                    crc = Crc16.calc(msg)
+                    msg += crc.to_bytes(2, 'big')
+                    print(msg)
+                    s.sendall(msg)
+                messages.success(request,
+                               'Home Command Sent.')
+                print('Received', repr(data))
+            except:
+                messages.error(request, "Please check SLSC is not connecting..")
     else:
         messages.error(request, 'SLSC Is Not Configured. Please configure SLSC IP in Settings > SLSC Network Settings.')
 
@@ -129,20 +131,22 @@ def safemode_command(request):
         if request.method == "POST":
             safe_mode_obj = SafeMode.objects.first()
             if safe_mode_obj and safe_mode_obj.password == request.POST.get("password", None):
+                try:
+                    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
-                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-
-                    s.connect((slsc_ip_details.ip_address, int(slsc_ip_details.port_number)))
+                        s.connect((slsc_ip_details.ip_address, int(slsc_ip_details.port_number)))
 
 
-                    msg = bytearray([177, 5])
-                    crc = Crc16.calc(msg)
-                    msg += crc.to_bytes(2, 'big')
-                    print(msg)
-                    s.sendall(msg)
+                        msg = bytearray([177, 5])
+                        crc = Crc16.calc(msg)
+                        msg += crc.to_bytes(2, 'big')
+                        print(msg)
+                        s.sendall(msg)
 
-                messages.success(request,
-                               'SafeMode Command Sent.')
+                    messages.success(request,
+                                   'SafeMode Command Sent.')
+                except:
+                    messages.error(request, "Please check SLSC is not connecting..")
             else:
                 messages.error(request,
                                  'SafeMode Password Incorrect.')
@@ -158,19 +162,21 @@ def shutdown_command(request):
 
     if slsc_ip_details:
         if request.method == "POST":
+            try:
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                    s.connect((slsc_ip_details.ip_address, int(slsc_ip_details.port_number)))
 
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                s.connect((slsc_ip_details.ip_address, int(slsc_ip_details.port_number)))
+                    msg = bytearray([177, 4])
+                    crc = Crc16.calc(msg)
+                    msg += crc.to_bytes(2, 'big')
+                    print(msg)
+                    s.sendall(msg)
 
-                msg = bytearray([177, 4])
-                crc = Crc16.calc(msg)
-                msg += crc.to_bytes(2, 'big')
-                print(msg)
-                s.sendall(msg)
-
-            messages.success(request,
-                           'Shutdown Command Sent.')
-            print('Received', repr(data))
+                messages.success(request,
+                               'Shutdown Command Sent.')
+                print('Received', repr(data))
+            except:
+                messages.error(request, "Please check SLSC is not connecting..")
     else:
         messages.error(request, 'SLSC Is Not Configured. Please configure SLSC IP in Settings > SLSC Network Settings.')
 

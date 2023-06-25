@@ -344,13 +344,23 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                        <form>
+                                    <div id="chartContainer" >
+                                        <div id="beacon-power-chart" style="width: 100%; height: 20em;"></div>
+                                    </div>
 
-
-
-
-
-                                        </form>
+                                    <form>
+                                          <div class="form-group row">
+                                            <div class="col-sm-4 ">
+                                              <label for="azimuth" class="col-form-label">Frequency</label>
+                                            </div>
+                                            <div class="input-group col-sm-8" style="height:2em;" >
+                                              <input type="text"  class="form-control "disabled id="frequency" placeholder="frequency">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text" id="basic-addon2">MHz</span>
+                                                  </div>
+                                            </div>
+                                          </div>
+                                    </form>
 
                                 </div>
                             </div>
@@ -361,7 +371,7 @@
                     </div>
 
                             <!-- Color System -->
-                            <div class="row">
+                    <div class="row">
                                 <div class="col-sm-2 mb-2">
                                     <div class="card bg-dark text-white shadow">
                                         <div class="card-body">
@@ -420,6 +430,173 @@
 
                             </div>
 
+                    <div class="row">
+                        <div class="col-sm-4">
+                             <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Antenna Current Status</h6>
+
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                        <form>
+                                          <div class="form-group row">
+                                            <label for="azimuth" class="col-sm-4 col-form-label">Azimuth</label>
+                                            <div class="input-group col-sm-8">
+                                              <input type="text" class="form-control "disabled id="azimuth" placeholder="Azimuth">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text" id="basic-addon2"> </span>
+                                                  </div>
+                                            </div>
+                                          </div>
+
+                                            <div class="form-group row">
+                                                <label for="elevation" class="col-sm-4 col-form-label">Elevation</label>
+                                                <div class="input-group col-sm-8">
+                                                  <input type="text" class="form-control "disabled id="elevation" placeholder="Elevation">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2"> </span>
+                                                      </div>
+                                                </div>
+                                              </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-4 col-form-label">Cross EL</label>
+                                                <div class="input-group col-sm-8">
+                                                  <input type="text" class="form-control "disabled id="crossel" placeholder="crossel">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >DD</span>
+                                                      </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="longitude" class="col-sm-4 col-form-label">Polarization</label>
+                                                <div class="input-group col-sm-8">
+                                                  <input type="text" class="form-control "disabled id="polarization" placeholder="polarization">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">DD</span>
+                                                      </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                             <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Antenna Target Status</h6>
+
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                        <form>
+                                          <div class="form-group row">
+                                            <label for="azimuth" class="col-sm-4 col-form-label">Azimuth</label>
+                                            <div class="input-group col-sm-8">
+                                              <input type="text" class="form-control "disabled id="antenna_target_azimuth" placeholder=" Target Azimuth">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text" id="basic-addon2"> </span>
+                                                  </div>
+                                            </div>
+                                          </div>
+
+                                            <div class="form-group row">
+                                                <label for="elevation" class="col-sm-4 col-form-label"> Elevation</label>
+                                                <div class="input-group col-sm-8">
+                                                  <input type="text" class="form-control "disabled id="antenna_target_elevation" placeholder="Target Elevation">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2"> </span>
+                                                      </div>
+                                                </div>
+                                              </div>
+
+
+                                            <div class="form-group row">
+                                                <label for="antenna_target_polarization" class="col-sm-4 col-form-label">Polarization</label>
+                                                <div class="input-group col-sm-8">
+                                                  <input type="text" class="form-control "disabled id="antenna_target_polarization" placeholder="polarization">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">DD</span>
+                                                      </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-4">
+                             <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary"> Current Consumption</h6>
+
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                        <form>
+                                          <div class="form-group row">
+                                            <div class="col-sm-4 ">
+                                              <label for="azimuth" class="col-form-label">Motor Azimuth</label>
+                                            </div>
+                                            <div class="input-group col-sm-8" style="height:2em;" >
+                                              <input type="text"  class="form-control "disabled id="motor_azimuth" placeholder="Motor Azimuth">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text" id="basic-addon2">Amp</span>
+                                                  </div>
+                                            </div>
+                                          </div>
+
+                                            <div class="form-group row">
+                                                <label for="elevation" class="col-sm-4 col-form-label">Motor Elevation</label>
+                                                <div class="input-group col-sm-8" style="height:2em;" >
+                                                  <input type="text" class="form-control "disabled id="motor_elevation" placeholder="Motor Elevation">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">Amp</span>
+                                                      </div>
+                                                </div>
+                                              </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-4 col-form-label">Motor Cross EL</label>
+                                                <div class="input-group col-sm-8"  style="height:2em;">
+                                                  <input type="text" class="form-control "disabled id="motor_cross_el" placeholder="crossel">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >Amp</span>
+                                                      </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="longitude" class="col-sm-4 col-form-label">Motor Polarization</label>
+                                                <div class="input-group col-sm-8" style="height:2em;">
+                                                  <input type="text" class="form-control "disabled id="motor_polarization" placeholder="motor_polarization">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">Amp</span>
+                                                      </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
 
 
@@ -473,5 +650,84 @@ $(document).ready(function () {
 
 });
 </script>
+<script>
+        // Initialize the chart
+        var chart = echarts.init(document.getElementById('beacon-power-chart'));
 
+
+        // Generate random data for the Y-axis
+        function generateData() {
+            return Math.floor(Math.random() * (-66 - (-80) + 1)) - 80;
+        }
+
+           // Specify chart options
+        var options = {
+            title: {
+                text: 'Beacon Power'
+            },
+            tooltip: {
+                formatter: '{b}<br />Power: {c} dBm'
+            },
+            xAxis: {
+                type: 'category',
+                data: ['Ku-Band (bDm)']
+            },
+            yAxis: {
+                type: 'value',
+                min: -80,
+                max: -66,
+                axisLabel: {
+                    formatter: '{value}'
+                }
+            },
+            series: [{
+                name: 'Power',
+                type: 'bar',
+                barWidth: '90%',
+                data: [generateData()],
+                itemStyle: {
+                    normal: {
+                        color: 'gray'
+                    },
+                    normal: {
+                        color: {
+                            type: 'linear',
+                            x: 0,
+                            y: 0,
+                            x2: 0,
+                            y2: 1,
+                            colorStops: [{
+                                offset: 0,
+                                color: 'gray'  // Start color (gray)
+                            }, {
+                                offset: 1,
+                                color: 'orange'  // End color (orange)
+                            }]
+                        }
+                    }
+                }
+            }]
+        };
+
+
+
+
+        // Update chart data and animation
+        function updateChartData() {
+            var newData = generateData();
+            chart.setOption({
+                series: [{
+                    data: [newData]
+                }]
+            });
+        }
+
+        // Set the options to the chart
+        chart.setOption(options);
+
+        // Update chart data every 2 seconds
+        setInterval(updateChartData, 2000);
+
+
+</script>
 {% endblock %}
