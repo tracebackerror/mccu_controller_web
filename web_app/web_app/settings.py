@@ -46,6 +46,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     "/var/www/static/",
 ]
+
+CSRF_TRUSTED_ORIGINS = ['https://868e-103-208-227-186.ngrok-free.app']
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

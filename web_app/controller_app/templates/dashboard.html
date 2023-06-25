@@ -1,332 +1,475 @@
 {% extends 'base.html' %}
 
-{% block title %}Page Title{% endblock %}
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
 
 {% block content %}
-
-
-<body>
-<div class="container content-top">
-    <!--    <ul class="nav nav-tabs" id="myTabs">-->
-    <!--      <li class="nav-item">-->
-    <!--        <a class="nav-link active" id="main-tab" data-toggle="tab" href="#main">Main</a>-->
-    <!--      </li>-->
-    <!--      <li class="nav-item">-->
-    <!--        <a class="nav-link" id="satellite-tab" data-toggle="tab" href="#satellite">Satellite</a>-->
-    <!--      </li>-->
-    <!--      <li class="nav-item">-->
-    <!--        <a class="nav-link" id="monitor-tab" data-toggle="tab" href="#monitor">Monitor</a>-->
-    <!--      </li>-->
-    <!--      <li class="nav-item">-->
-    <!--        <a class="nav-link" id="diagnostic-tab" data-toggle="tab" href="#diagnostic">Diagnostic</a>-->
-    <!--      </li>-->
-    <!--    </ul>-->
-
-    <div class="tab-content mt-3">
-        <!-- Main Tab -->
-        <div class="tab-pane fade show active" id="main">
-            <div class="row">
-                <!-- Left Section -->
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <!-- ADE Status -->
-                            <h5 class="card-title">ADE Status</h5>
-                            <p>Date: <span id="date"></span></p>
-                            <p>Time: <span id="time"></span></p>
-                            <p>Latitude: <span id="latitude"></span></p>
-                            <p>Longitude: <span id="longitude"></span></p>
-                            <p>Roll: <span id="roll"></span></p>
-                            <p>Pitch: <span id="pitch"></span></p>
-                            <p>Yaw: <span id="yaw"></span></p>
-
-
-                            <!-- Add more fields as needed -->
-
-                            <!-- Antenna Position -->
-                            <h5 class="card-title">Antenna Position</h5>
-                            <p>Azimuth: <span id="azimuth"></span></p>
-                            <p>Elevation: <span id="elevation"></span></p>
-                            <p>Cross-EL: <span id="crossel"></span></p>
-                            <p>Polarization: <span id="polarization"></span></p>
-                            <!-- Add more fields as needed -->
-
-                            <!-- Antenna Target -->
-                            <h5 class="card-title">Antenna Target</h5>
-                            <p>Azimuth: <span id="antenna_target_azimuth"></span></p>
-                            <p>Elevation: <span id="antenna_target_elevation"></span></p>
-                            <p>Polarization: <span id="antenna_target_polarization"></span></p>
-                            <!-- Add more fields as needed -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Center Section -->
-                <div class="col-lg-6">
+<!-- Content Row -->
                     <div class="row">
-                        <div class="col-md-6">
-                             <div class="temp">
-                                        <div class="temp__logo">Temperature</div>
-                                        <div class="temp__comet"></div>
-                                        <canvas class="temp__fizz"></canvas>
-                                        <div class="temp__label">Temp</div>
-                                        <div class="temp__value"><span id="temp"></span></div>
-                                        <div class="temp__dial"></div>
-                             </div>
+
+                        <!-- Card Example -->
+                        <div class="col-sm-4  mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Satellite Name</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">GSAT</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <svg fill="#000000" height="2rem"  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                     viewBox="0 0 512.001 512.001" xml:space="preserve">
+                                                                <g>
+                                                                    <g>
+                                                                        <g>
+                                                                            <path d="M392.661,255.896c-1.331-2.662-3.942-4.437-6.904-4.685c-3.021-0.341-5.845,1.058-7.603,3.447l-40.115,54.699
+                                                                                l-19.422-19.43l42.283-42.283c1.604-1.604,2.5-3.772,2.5-6.033c0-2.27-0.896-4.437-2.5-6.033l-6.042-6.033l18.065-18.057
+                                                                                c3.328-3.337,3.328-8.738,0-12.066l-24.141-24.141l13.79-13.781c5.683,1.493,11.972,0.094,16.427-4.361
+                                                                                c6.665-6.665,6.665-17.476,0-24.141c-6.664-6.665-17.468-6.665-24.132,0c-4.454,4.454-5.862,10.743-4.36,16.427l-13.79,13.79
+                                                                                l-24.141-24.141c-3.2-3.2-8.866-3.2-12.066,0l-18.099,18.108l-6.033-6.033c-3.337-3.328-8.73-3.328-12.066,0l-42.24,42.24
+                                                                                l-12.066-12.075l48.316-48.316c1.946-1.937,2.833-4.685,2.389-7.398c-0.435-2.705-2.15-5.043-4.608-6.263L111.292,46.923
+                                                                                c-2.876-1.425-6.323-1.135-8.909,0.785L3.447,121.155c-2.415,1.792-3.703,4.71-3.405,7.697c0.299,2.995,2.15,5.598,4.873,6.878
+                                                                                l165.265,77.449c1.161,0.538,2.389,0.811,3.618,0.811c2.219,0,4.395-0.87,6.033-2.5l18.108-18.108l12.066,12.075l-48.222,48.222
+                                                                                c-3.337,3.337-3.337,8.73,0,12.066l6.033,6.033l-18.15,18.15c-3.328,3.336-3.328,8.73,0,12.066l60.339,60.339
+                                                                                c1.664,1.672,3.849,2.5,6.033,2.5c2.185,0,4.369-0.828,6.033-2.5l18.15-18.142l6.033,6.033c1.604,1.604,3.772,2.5,6.033,2.5
+                                                                                s4.437-0.896,6.033-2.5l48.23-48.23l21.282,21.282l-16.094,21.939c-1.801,2.458-2.159,5.666-0.947,8.448l66.364,153.199
+                                                                                c1.22,2.807,3.84,4.753,6.878,5.094c0.324,0.026,0.64,0.043,0.956,0.043c2.697,0,5.265-1.28,6.878-3.49l72.508-98.978
+                                                                                c1.894-2.586,2.185-6.007,0.751-8.858L392.661,255.896z M210.005,253.729c3.328-3.337,8.738-3.337,12.066,0
+                                                                                c3.337,3.328,3.337,8.73,0,12.066c-3.328,3.328-8.738,3.328-12.066,0C206.669,262.458,206.669,257.057,210.005,253.729z
+                                                                                 M216.038,344.233l-48.273-48.273l12.066-12.066l48.282,48.273L216.038,344.233z M246.212,241.654
+                                                                                c-3.337,3.337-8.738,3.337-12.075,0c-3.328-3.328-3.328-8.73,0-12.066c3.336-3.328,8.738-3.328,12.075,0
+                                                                                C249.54,232.925,249.54,238.326,246.212,241.654z M270.344,217.522c-3.337,3.337-8.738,3.337-12.066,0
+                                                                                c-3.336-3.336-3.336-8.738,0-12.066c3.328-3.337,8.73-3.337,12.066,0C273.681,208.784,273.681,214.185,270.344,217.522z
+                                                                                 M294.485,169.24l12.058-12.066l24.132,24.132l0.009,0.009l0.017,0.009l24.124,24.132l-12.032,12.032L294.485,169.24z"/>
+                                                                            <path d="M366.934,0.002c-4.71,0-8.533,3.814-8.533,8.533s3.823,8.533,8.533,8.533c70.579,0,128,57.421,128,128
+                                                                                c0,4.719,3.814,8.533,8.533,8.533c4.719,0,8.533-3.814,8.533-8.533C512.001,65.077,446.926,0.002,366.934,0.002z"/>
+                                                                            <path d="M366.934,42.669c-4.71,0-8.533,3.814-8.533,8.533s3.823,8.533,8.533,8.533c47.053,0,85.333,38.281,85.333,85.333
+                                                                                c0,4.719,3.814,8.533,8.533,8.533c4.719,0,8.533-3.814,8.533-8.533C469.334,88.604,423.399,42.669,366.934,42.669z"/>
+                                                                            <path d="M409.601,145.069c0,4.719,3.814,8.533,8.533,8.533s8.533-3.814,8.533-8.533c0-32.93-26.795-59.733-59.733-59.733
+                                                                                c-4.71,0-8.533,3.814-8.533,8.533c0,4.719,3.823,8.533,8.533,8.533C390.461,102.402,409.601,121.542,409.601,145.069z"/>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                                </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
+                        <!-- Card Example -->
+                        <div class="col-sm-4  mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                SATELLITE MODEL</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">12121212</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <svg fill="#000000" height="2rem"  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                     viewBox="0 0 512.001 512.001" xml:space="preserve">
+                                                                <g>
+                                                                    <g>
+                                                                        <g>
+                                                                            <path d="M392.661,255.896c-1.331-2.662-3.942-4.437-6.904-4.685c-3.021-0.341-5.845,1.058-7.603,3.447l-40.115,54.699
+                                                                                l-19.422-19.43l42.283-42.283c1.604-1.604,2.5-3.772,2.5-6.033c0-2.27-0.896-4.437-2.5-6.033l-6.042-6.033l18.065-18.057
+                                                                                c3.328-3.337,3.328-8.738,0-12.066l-24.141-24.141l13.79-13.781c5.683,1.493,11.972,0.094,16.427-4.361
+                                                                                c6.665-6.665,6.665-17.476,0-24.141c-6.664-6.665-17.468-6.665-24.132,0c-4.454,4.454-5.862,10.743-4.36,16.427l-13.79,13.79
+                                                                                l-24.141-24.141c-3.2-3.2-8.866-3.2-12.066,0l-18.099,18.108l-6.033-6.033c-3.337-3.328-8.73-3.328-12.066,0l-42.24,42.24
+                                                                                l-12.066-12.075l48.316-48.316c1.946-1.937,2.833-4.685,2.389-7.398c-0.435-2.705-2.15-5.043-4.608-6.263L111.292,46.923
+                                                                                c-2.876-1.425-6.323-1.135-8.909,0.785L3.447,121.155c-2.415,1.792-3.703,4.71-3.405,7.697c0.299,2.995,2.15,5.598,4.873,6.878
+                                                                                l165.265,77.449c1.161,0.538,2.389,0.811,3.618,0.811c2.219,0,4.395-0.87,6.033-2.5l18.108-18.108l12.066,12.075l-48.222,48.222
+                                                                                c-3.337,3.337-3.337,8.73,0,12.066l6.033,6.033l-18.15,18.15c-3.328,3.336-3.328,8.73,0,12.066l60.339,60.339
+                                                                                c1.664,1.672,3.849,2.5,6.033,2.5c2.185,0,4.369-0.828,6.033-2.5l18.15-18.142l6.033,6.033c1.604,1.604,3.772,2.5,6.033,2.5
+                                                                                s4.437-0.896,6.033-2.5l48.23-48.23l21.282,21.282l-16.094,21.939c-1.801,2.458-2.159,5.666-0.947,8.448l66.364,153.199
+                                                                                c1.22,2.807,3.84,4.753,6.878,5.094c0.324,0.026,0.64,0.043,0.956,0.043c2.697,0,5.265-1.28,6.878-3.49l72.508-98.978
+                                                                                c1.894-2.586,2.185-6.007,0.751-8.858L392.661,255.896z M210.005,253.729c3.328-3.337,8.738-3.337,12.066,0
+                                                                                c3.337,3.328,3.337,8.73,0,12.066c-3.328,3.328-8.738,3.328-12.066,0C206.669,262.458,206.669,257.057,210.005,253.729z
+                                                                                 M216.038,344.233l-48.273-48.273l12.066-12.066l48.282,48.273L216.038,344.233z M246.212,241.654
+                                                                                c-3.337,3.337-8.738,3.337-12.075,0c-3.328-3.328-3.328-8.73,0-12.066c3.336-3.328,8.738-3.328,12.075,0
+                                                                                C249.54,232.925,249.54,238.326,246.212,241.654z M270.344,217.522c-3.337,3.337-8.738,3.337-12.066,0
+                                                                                c-3.336-3.336-3.336-8.738,0-12.066c3.328-3.337,8.73-3.337,12.066,0C273.681,208.784,273.681,214.185,270.344,217.522z
+                                                                                 M294.485,169.24l12.058-12.066l24.132,24.132l0.009,0.009l0.017,0.009l24.124,24.132l-12.032,12.032L294.485,169.24z"/>
+                                                                            <path d="M366.934,0.002c-4.71,0-8.533,3.814-8.533,8.533s3.823,8.533,8.533,8.533c70.579,0,128,57.421,128,128
+                                                                                c0,4.719,3.814,8.533,8.533,8.533c4.719,0,8.533-3.814,8.533-8.533C512.001,65.077,446.926,0.002,366.934,0.002z"/>
+                                                                            <path d="M366.934,42.669c-4.71,0-8.533,3.814-8.533,8.533s3.823,8.533,8.533,8.533c47.053,0,85.333,38.281,85.333,85.333
+                                                                                c0,4.719,3.814,8.533,8.533,8.533c4.719,0,8.533-3.814,8.533-8.533C469.334,88.604,423.399,42.669,366.934,42.669z"/>
+                                                                            <path d="M409.601,145.069c0,4.719,3.814,8.533,8.533,8.533s8.533-3.814,8.533-8.533c0-32.93-26.795-59.733-59.733-59.733
+                                                                                c-4.71,0-8.533,3.814-8.533,8.533c0,4.719,3.823,8.533,8.533,8.533C390.461,102.402,409.601,121.542,409.601,145.069z"/>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                                </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                        <div class="col-md-6">
-                             <div class="temp">
-                                        <div class="temp__logo">Current</div>
-                                        <div class="temp__comet"></div>
-                                        <canvas class="temp__fizz"></canvas>
-                                        <div class="temp__label">Kw</div>
-                                        <div class="temp__value"><span id="current"></span></div>
-                                        <div class="temp__dial"></div>
-                             </div>
+                        <!-- Card Example -->
+                        <div class="col-sm-4  mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">SHIP NAME
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">INS VIKRANT</div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <svg fill="#000000" height="2rem"  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                     viewBox="0 0 512.001 512.001" xml:space="preserve">
+                                                                <g>
+                                                                    <g>
+                                                                        <g>
+                                                                            <path d="M392.661,255.896c-1.331-2.662-3.942-4.437-6.904-4.685c-3.021-0.341-5.845,1.058-7.603,3.447l-40.115,54.699
+                                                                                l-19.422-19.43l42.283-42.283c1.604-1.604,2.5-3.772,2.5-6.033c0-2.27-0.896-4.437-2.5-6.033l-6.042-6.033l18.065-18.057
+                                                                                c3.328-3.337,3.328-8.738,0-12.066l-24.141-24.141l13.79-13.781c5.683,1.493,11.972,0.094,16.427-4.361
+                                                                                c6.665-6.665,6.665-17.476,0-24.141c-6.664-6.665-17.468-6.665-24.132,0c-4.454,4.454-5.862,10.743-4.36,16.427l-13.79,13.79
+                                                                                l-24.141-24.141c-3.2-3.2-8.866-3.2-12.066,0l-18.099,18.108l-6.033-6.033c-3.337-3.328-8.73-3.328-12.066,0l-42.24,42.24
+                                                                                l-12.066-12.075l48.316-48.316c1.946-1.937,2.833-4.685,2.389-7.398c-0.435-2.705-2.15-5.043-4.608-6.263L111.292,46.923
+                                                                                c-2.876-1.425-6.323-1.135-8.909,0.785L3.447,121.155c-2.415,1.792-3.703,4.71-3.405,7.697c0.299,2.995,2.15,5.598,4.873,6.878
+                                                                                l165.265,77.449c1.161,0.538,2.389,0.811,3.618,0.811c2.219,0,4.395-0.87,6.033-2.5l18.108-18.108l12.066,12.075l-48.222,48.222
+                                                                                c-3.337,3.337-3.337,8.73,0,12.066l6.033,6.033l-18.15,18.15c-3.328,3.336-3.328,8.73,0,12.066l60.339,60.339
+                                                                                c1.664,1.672,3.849,2.5,6.033,2.5c2.185,0,4.369-0.828,6.033-2.5l18.15-18.142l6.033,6.033c1.604,1.604,3.772,2.5,6.033,2.5
+                                                                                s4.437-0.896,6.033-2.5l48.23-48.23l21.282,21.282l-16.094,21.939c-1.801,2.458-2.159,5.666-0.947,8.448l66.364,153.199
+                                                                                c1.22,2.807,3.84,4.753,6.878,5.094c0.324,0.026,0.64,0.043,0.956,0.043c2.697,0,5.265-1.28,6.878-3.49l72.508-98.978
+                                                                                c1.894-2.586,2.185-6.007,0.751-8.858L392.661,255.896z M210.005,253.729c3.328-3.337,8.738-3.337,12.066,0
+                                                                                c3.337,3.328,3.337,8.73,0,12.066c-3.328,3.328-8.738,3.328-12.066,0C206.669,262.458,206.669,257.057,210.005,253.729z
+                                                                                 M216.038,344.233l-48.273-48.273l12.066-12.066l48.282,48.273L216.038,344.233z M246.212,241.654
+                                                                                c-3.337,3.337-8.738,3.337-12.075,0c-3.328-3.328-3.328-8.73,0-12.066c3.336-3.328,8.738-3.328,12.075,0
+                                                                                C249.54,232.925,249.54,238.326,246.212,241.654z M270.344,217.522c-3.337,3.337-8.738,3.337-12.066,0
+                                                                                c-3.336-3.336-3.336-8.738,0-12.066c3.328-3.337,8.73-3.337,12.066,0C273.681,208.784,273.681,214.185,270.344,217.522z
+                                                                                 M294.485,169.24l12.058-12.066l24.132,24.132l0.009,0.009l0.017,0.009l24.124,24.132l-12.032,12.032L294.485,169.24z"/>
+                                                                            <path d="M366.934,0.002c-4.71,0-8.533,3.814-8.533,8.533s3.823,8.533,8.533,8.533c70.579,0,128,57.421,128,128
+                                                                                c0,4.719,3.814,8.533,8.533,8.533c4.719,0,8.533-3.814,8.533-8.533C512.001,65.077,446.926,0.002,366.934,0.002z"/>
+                                                                            <path d="M366.934,42.669c-4.71,0-8.533,3.814-8.533,8.533s3.823,8.533,8.533,8.533c47.053,0,85.333,38.281,85.333,85.333
+                                                                                c0,4.719,3.814,8.533,8.533,8.533c4.719,0,8.533-3.814,8.533-8.533C469.334,88.604,423.399,42.669,366.934,42.669z"/>
+                                                                            <path d="M409.601,145.069c0,4.719,3.814,8.533,8.533,8.533s8.533-3.814,8.533-8.533c0-32.93-26.795-59.733-59.733-59.733
+                                                                                c-4.71,0-8.533,3.814-8.533,8.533c0,4.719,3.823,8.533,8.533,8.533C390.461,102.402,409.601,121.542,409.601,145.069z"/>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                                </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 
                     </div>
 
+                    <!-- Content Row -->
 
-                    <div class="card">
-                        <div class="card-body">
-                            <!-- Antenna Chart -->
-                            <h5 class="card-title">Antenna Chart</h5>
-                            <div id="antenna-chart">
+                    <div class="row">
 
+                        <!-- Area Chart -->
+                        <div class="col-sm-4 ">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">ADE Status</h6>
+
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                        <form>
+                                          <div class="form-group row">
+                                            <label for="inputEmail3" class="col-sm-4 col-form-label">Date</label>
+                                            <div class="input-group col-sm-8">
+                                              <input type="text" class="form-control "disabled id="date" placeholder="Date">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text" id="basic-addon2"> </span>
+                                                  </div>
+                                            </div>
+                                          </div>
+
+                                            <div class="form-group row">
+                                                <label for="inputEmail3" class="col-sm-4 col-form-label">Time</label>
+                                                <div class="input-group col-sm-8">
+                                                  <input type="text" class="form-control "disabled id="time" placeholder="Time">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2"> </span>
+                                                      </div>
+                                                </div>
+                                              </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-4 col-form-label">Latitude</label>
+                                                <div class="input-group col-sm-8">
+                                                  <input type="text" class="form-control "disabled id="latitude" placeholder="latitude">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" >DD</span>
+                                                      </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="longitude" class="col-sm-4 col-form-label">Longitude</label>
+                                                <div class="input-group col-sm-8">
+                                                  <input type="text" class="form-control "disabled id="longitude" placeholder="longitude">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">DD</span>
+                                                      </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <label for="longitude" class="col-sm-4 col-form-label">Roll</label>
+                                                <div class="input-group col-sm-8">
+                                                  <input type="text" class="form-control "disabled id="roll" placeholder="roll">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">deg</span>
+                                                      </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <label for="longitude" class="col-sm-4 col-form-label">Pitch</label>
+                                                <div class="input-group col-sm-8">
+                                                  <input type="text" class="form-control "disabled id="pitch" placeholder="pitch">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">deg</span>
+                                                      </div>
+                                                </div>
+                                            </div>
+
+                                             <div class="form-group row">
+                                                <label for="longitude" class="col-sm-4 col-form-label">Yaw</label>
+                                                <div class="input-group col-sm-8">
+                                                  <input type="text" class="form-control "disabled id="yaw" placeholder="yaw">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">deg</span>
+                                                      </div>
+                                                </div>
+                                            </div>
+
+
+                                             <div class="form-group row">
+                                                <label for="longitude" class="col-sm-4 col-form-label">Temperature</label>
+                                                <div class="input-group col-sm-8">
+                                                  <input type="text" class="form-control "disabled id="temperature" placeholder="Temperature">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">cel</span>
+                                                      </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <label for="longitude" class="col-sm-4 col-form-label">Current</label>
+                                                <div class="input-group col-sm-8">
+                                                  <input type="text" class="form-control "disabled id="current" placeholder="current">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-addon2">amp</span>
+                                                      </div>
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                          <!-- Main Chart -->
+                        <div class="col-sm-4 ">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Satellite Image</h6>
+
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                        <form>
+
+
+
+
+
+                                        </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                          <!-- Beacon Chart -->
+                        <div class="col-sm-4 ">
+
+                             <div class="row">
+                                <div class="col-sm-6 mb-2">
+                                    <div class="card bg-success text-white shadow">
+                                        <div class="card-body">
+                                            SAT Lock
+                                            <div class="text-white-50 small">Running</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 mb-2">
+                                    <div class="card bg-danger text-white shadow">
+                                        <div class="card-body">
+                                            ADE COMMU.
+                                            <div class="text-white-50 small">Failed</div>
+                                        </div>
+                                    </div>
+                                </div>
+                             </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Beacon Power</h6>
+
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                        <form>
+
+
+
+
+
+                                        </form>
+
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                            <!-- Color System -->
+                            <div class="row">
+                                <div class="col-sm-2 mb-2">
+                                    <div class="card bg-dark text-white shadow">
+                                        <div class="card-body">
+                                            Status
+                                            <div class="text-white-50 small">Running or Failed</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2 mb-2">
+                                    <div class="card bg-danger text-white shadow">
+                                        <div class="card-body">
+                                            ADE COMMU.
+                                            <div class="text-white-50 small">Failed</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-2 mb-2">
+                                    <div class="card bg-success text-white shadow">
+                                        <div class="card-body">
+                                            GPS
+                                            <div class="text-white-50 small">Running</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-2 mb-2">
+                                    <div class="card bg-success text-white shadow">
+                                        <div class="card-body">
+                                            OSU
+                                            <div class="text-white-50 small">Running</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2 mb-2">
+                                    <div class="card bg-success text-white shadow">
+                                        <div class="card-body">
+                                            BEACON POWER
+                                            <div class="text-white-50 small">Running</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                 <div class="col-sm-2 mb-2">
+                                    <div class="card bg-success text-white shadow">
+                                        <div class="card-body">
+                                            FIBER LINK
+                                            <div class="text-white-50 small">Running</div>
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
-                            <script>
-                  // Replace with your chart code or embed a plot here
-
-                            </script>
-
-                            <!-- Commands -->
-                            <h5 class="card-title">Commands</h5>
-                            <button class="btn btn-primary">ADE COMM</button>
-                            <button class="btn btn-primary">GPS</button>
-                            <button class="btn btn-primary">OSU</button>
-                            <button class="btn btn-primary">BEACON PWR</button>
-                            <button class="btn btn-primary">FIBER LINK</button>
-                            <!-- Add more buttons as needed -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Section -->
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <!-- Satellite Information -->
-                            <h5 class="card-title">Satellite Information</h5>
-                            <p>Satellite: <span id="satellite_name"></span></p>
-                            <p>Channel: <span id="channel"></span></p>
-                            <!-- Add more fields as needed -->
-
-                            <!-- Beacon Power Chart -->
-                            <!--                <h5 class="card-title">Beacon Power Chart</h5>-->
-
-                            <div id="chartContainer">
-                                <div id="beacon-power-chart" style="width: 100%; height: 100%;"></div>
-                            </div>
-
-                            <script>
-                  // Replace with your chart code or embed a plot here
-
-
-                            </script>
-
-                            <!-- Current Consumption -->
-                            <h5 class="card-title">Current Consumption</h5>
-                            <p>Motor Azimuth: <span id="motor_azimuth"></span></p>
-                            <p>Motor Elevation: <span id="motor_elevation"></span></p>
-                            <p>Motor Cross EL: <span id="motor_cross_el"></span></p>
-                            <p>Motor Polarization: <span id="motor_polarization"></span></p>
-                            <!-- Add more fields as needed -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Satellite Tab -->
-        <div class="tab-pane fade" id="satellite">
-            <!-- Content for Satellite Tab -->
-        </div>
-
-        <!-- Monitor Tab -->
-        <div class="tab-pane fade" id="monitor">
-            <!-- Content for Monitor Tab -->
-        </div>
-
-        <!-- Diagnostic Tab -->
-        <div class="tab-pane fade" id="diagnostic">
-            <!-- Content for Diagnostic Tab -->
-        </div>
-    </div>
-</div>
-
-<!-- Initialize Bootstrap Tabs -->
-<script>
-    $(document).ready(function () {
-      $('#myTabs').tab();
-    });
 
 
 
 
 
-</script>
-
-
-<script>
-        // Initialize the chart
-        var chart = echarts.init(document.getElementById('beacon-power-chart'));
-
-
-        // Generate random data for the Y-axis
-        function generateData() {
-            return Math.floor(Math.random() * (-66 - (-80) + 1)) - 80;
-        }
-
-           // Specify chart options
-        var options = {
-            title: {
-                text: 'Beacon Power'
-            },
-            tooltip: {
-                formatter: '{b}<br />Power: {c} dBm'
-            },
-            xAxis: {
-                type: 'category',
-                data: ['Ku-Band (bDm)']
-            },
-            yAxis: {
-                type: 'value',
-                min: -80,
-                max: -66,
-                axisLabel: {
-                    formatter: '{value}'
-                }
-            },
-            series: [{
-                name: 'Power',
-                type: 'bar',
-                barWidth: '90%',
-                data: [generateData()],
-                itemStyle: {
-                    normal: {
-                        color: 'gray'
-                    },
-                    normal: {
-                        color: {
-                            type: 'linear',
-                            x: 0,
-                            y: 0,
-                            x2: 0,
-                            y2: 1,
-                            colorStops: [{
-                                offset: 0,
-                                color: 'gray'  // Start color (gray)
-                            }, {
-                                offset: 1,
-                                color: 'orange'  // End color (orange)
-                            }]
-                        }
-                    }
-                }
-            }]
-        };
-
-
-
-
-        // Update chart data and animation
-        function updateChartData() {
-            var newData = generateData();
-            chart.setOption({
-                series: [{
-                    data: [newData]
-                }]
-            });
-        }
-
-        // Set the options to the chart
-        chart.setOption(options);
-
-        // Update chart data every 2 seconds
-        setInterval(updateChartData, 2000);
-
-
-</script>
 <script type="text/javascript">
 $(document).ready(function () {
 
-    const eventSource = new EventSource('http://127.0.0.1:8000/csv_stream');
+    const eventSource = new EventSource('/csv_stream');
 
-    const outputDiv = document.getElementById('stream-output');
+
 
     eventSource.onmessage = function(event) {
       const data = event.data;
-      const columns = data.split(','); // Split the CSV data into columns
-
-      // Clear the existing data
-      outputDiv.innerHTML = '';
-
-      // Create a container element to hold the columns
-      const row = document.createElement('div');
-      row.className = 'row';
-      if (columns.length > 10) {
-        blinkOnce();
-      }
-
-       $("#date").text(columns[0]);
-       $("#time").text(columns[1]);
-
-       $("#latitude").text(columns[2]);
-       $("#longitude").text(columns[3]);
-
-       $("#roll").text(columns[4]);
-       $("#pitch").text(columns[5]);
-       $("#yaw").text(columns[6]);
-
-       $("#temp").text(columns[7]);
-       $("#current").text(columns[8]);
-
-       $("#azimuth").text(columns[9]);
-       $("#elevation").text(columns[10]);
-       $("#crossel").text(columns[11]);
-       $("#polarization").text(columns[12]);
-
-       $("#antenna_target_azimuth").text(columns[13]);
-       $("#antenna_target_elevation").text(columns[14]);
-       $("#antenna_target_polarization").text(columns[15]);
+      const columns = data.split(',');
 
 
-       $("#satellite_name").text(columns[16]);
-       $("#channel").text(columns[17]);
 
 
-       $("#motor_azimuth").text(columns[18]);
-       $("#motor_elevation").text(columns[19]);
-       $("#motor_cross_el").text(columns[20]);
-       $("#motor_polarization").text(columns[21]);
+       $("#date").val(columns[0]);
+       $("#time").val(columns[1]);
+
+       $("#latitude").val(columns[2]);
+       $("#longitude").val(columns[3]);
+
+       $("#roll").val(columns[4]);
+       $("#pitch").val(columns[5]);
+       $("#yaw").val(columns[6]);
+
+       $("#temperature").val(columns[7]);
+       $("#current").val(columns[8]);
+
+       $("#azimuth").val(columns[9]);
+       $("#elevation").val(columns[10]);
+       $("#crossel").val(columns[11]);
+       $("#polarization").val(columns[12]);
+
+       $("#antenna_target_azimuth").val(columns[13]);
+       $("#antenna_target_elevation").val(columns[14]);
+       $("#antenna_target_polarization").val(columns[15]);
 
 
-      // Render each column in a separate HTML element
-      columns.forEach(function(columnData) {
-        const column = document.createElement('p');
-        column.textContent = columnData +"-*-";
-        row.appendChild(column);
-      });
-
-      outputDiv.appendChild(row); // Append the row to the output container
-    };
+       $("#satellite_name").val(columns[16]);
+       $("#channel").val(columns[17]);
 
 
+       $("#motor_azimuth").val(columns[18]);
+       $("#motor_elevation").val(columns[19]);
+       $("#motor_cross_el").val(columns[20]);
+       $("#motor_polarization").val(columns[21]);
+    }
 
 });
 </script>

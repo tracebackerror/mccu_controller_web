@@ -1,981 +1,352 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>{% block title %}{% endblock %}</title>
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/all.min.css' %}" rel="stylesheet">
 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Bootstrap core JavaScript-->
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/echarts.min.js' %}"></script>
+
+    <link href="{% static 'css/all.min.css' %}" rel="stylesheet" type="text/css" />
 
 
-     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-    <!-- Include the DataTables script -->
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+
+      <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css" />
 
 
     <style>
-
-
-    .dataTables_wrapper {
-      overflow-x: scroll;
-      margin-bottom:4em;
-    }
-
-
-    /* Chart */
-    #chartContainer {
-            width: 220px;
-            height: 400px;
-            padding: 0 10px;
-        }
-
-
-     /* END CHART*/
-
- /* Footer */
-  html {
-  position: relative;
-  min-height: 100%;
-}
-
-bobody {
-  margin-bottom: 60px; /* Adjust the margin-bottom value as needed */
-  padding-bottom: 60px; /* Add this line to create space for the footer */
-}
-
-.footer {
-  position: fixed; /* Change position to fixed */
-  bottom: 0;
-  width: 100%;
-  height: 40px; /* Adjust the height value as needed */
-  background-color: #333;
-  color: #fff;
-}
-
-.shell {
-  padding: 10px;
-}
-
-/* Footer end */
-
-    .sidebar {
-      height: 100vh;
-      position: fixed;
-      left: 0;
-      width: 80px;
-      background-color: #333;
-      padding-top: 20px;
-      transition: width 0.3s;
-      z-index: 999;
-    }
-
-    .sidebar.expanded {
-      width: 200px;
-    }
-
-    .sidebar .nav-link {
-      text-align: center;
-      border: none;
-      background: none;
-      color: #fff;
-      transition: padding 0.3s;
-      position: relative;
-    }
-
-    .sidebar.expanded .nav-link {
-      padding-left: 20px;
-      text-align: left;
-    }
-
-    .sidebar .nav-link i {
-      font-size: 24px;
-      display: block;
-    }
-
-    .sidebar .nav-link .menu-text {
-      display: none;
-      position: absolute;
-      top: 50%;
-      left: calc(80px + 10px); /* Adjust the left position as needed */
-      transform: translateY(-50%);
-      white-space: nowrap;
-      font-size: 14px;
-      color: #fff;
-      transition: opacity 0.3s;
-    }
-
-    .sidebar.expanded .nav-link .menu-text {
-      display: inline;
-      left: 100px; /* Adjust the left position as needed */
-    }
-
-    .sidebar .nav-link:hover .menu-text {
-      display: block;
-    }
-
-    .sidebar .bottom-menu {
-      position: absolute;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-    }
-
-    .content {
-      margin-left: 80px;
-      padding: 20px;
-    }
-
-    .navbar {
-      margin: 0;
-      border-radius: 0;
-      background-color: #333;
-    }
-
-    .navbar-nav {
-      margin: 0;
-    }
-
-    .navbar-brand {
-      color: #fff;
-      font-weight: bold;
-    }
-
-    .navbar-nav .nav-link {
-      color: #fff;
-    }
-
-    .navbar-nav .nav-link:hover {
-      color: #ddd;
-    }
-
-.badge-triangle {
-  position: relative;
-}
-
-.badge-triangle::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -10px;
-  transform: translateY(-50%);
-  border-top: 5px solid transparent;
-  border-right: 5px solid #000; /* Replace with the desired color */
-  border-bottom: 5px solid transparent;
-}
-
-/* Header Code */
-body {
-    margin: 0;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: #f7f7f7;
-}
-.navbar {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    padding: 5px;
-}
-
-/*
-headeer top
-*/
-.topbar{
-  background-color: #212529;
-  padding: 0;
-}
-
-.topbar .container .row {
-  margin:-7px;
-  padding:0;
-}
-
-.topbar .container .row .col-md-12 {
-  padding:0;
-}
-
-.topbar p{
-  margin:0;
-  display:inline-block;
-  font-size: 13px;
-  color: #f1f6ff;
-}
-
-.topbar p > i{
-  margin-right:5px;
-}
-.topbar p:last-child{
-  text-align:right;
-}
-
-header .navbar {
-    margin-bottom: 0;
-}
-
-.topbar li.topbar {
-    display: inline;
-    padding-right: 18px;
-    line-height: 52px;
-    transition: all .3s linear;
-}
-
-.topbar li.topbar:hover {
-    color: #1bbde8;
-}
-
-.topbar ul.info i {
-    color: #131313;
-    font-style: normal;
-    margin-right: 8px;
-    display: inline-block;
-    position: relative;
-    top: 4px;
-}
-
-.topbar ul.info li {
-    float: right;
-    padding-left: 30px;
-    color: #ffffff;
-    font-size: 13px;
-    line-height: 44px;
-}
-
-.topbar ul.info i span {
-    color: #aaa;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 50px;
-    padding-left: 18px;
-}
-
-ul.social-network {
-  border:none;
-  margin:0;
-  padding:0;
-}
-
-ul.social-network li {
-  border:none;
-  margin:0;
-}
-
-ul.social-network li i {
-  margin:0;
-}
-
-ul.social-network li {
-    display:inline;
-    margin: 0 5px;
-    border: 0px solid #2D2D2D;
-    padding: 5px 0 0;
-    width: 32px;
-    display: inline-block;
-    text-align: center;
-    height: 32px;
-    vertical-align: baseline;
-    color: #000;
-}
-
-ul.social-network {
-  list-style: none;
-  margin: 5px 0 10px -25px;
-  float: right;
-}
-
-.waves-effect {
-    position: relative;
-    cursor: pointer;
-    display: inline-block;
-    overflow: hidden;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    vertical-align: middle;
-    z-index: 1;
-    will-change: opacity, transform;
-    transition: .3s ease-out;
-    color: #fff;
-}
-a {
-  color: #0a0a0a;
-  text-decoration: none;
-}
-
-li {
-    list-style-type: none;
-}
-.bg-image-full {
-    background-position: center center;
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-}
-.bg-dark {
-    background-color: #222!important;
-}
-
-.mx-background-top-linear {
-    background: -webkit-linear-gradient(45deg, #54d400 48%, #1b1e21 48%);
-    background: -webkit-linear-gradient(left, #54d400 48%, #1b1e21 48%);
-    background: linear-gradient(45deg, #54d400 48%, #1b1e21 48%);
-}
-.fixed-top {
-    z-index:-999;
-}
-.main-dashbaord{
-    padding:0px;
-}
-.content-top {
-    margin-top: 1em;
-}
-/* Hedare End */
-
-
-.btn-center-icon {
-    padding: 1.5rem 2rem
-}
-
-
-.inset-footer {
-      background-color: #f8f9fa;
-      padding: 15px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2);
-    }
-
-     .terminal-div {
-      background-color: #000000;
-      font-size:5px;
-      color: #ffff00;
-        padding-left: 1em;
-      border: 5px solid rgba(0, 0, 0, 0.2);
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
-    }
-
-.temp {
-	--angle: 0;
-	--hue: 240;
-	background-image:
-		radial-gradient(
-			100% 100% at 50% 50%,
-			hsl(var(--hue),90%,17%) 3.55em,
-			hsla(var(--hue),90%,17%,0) 3.6em
-		),
-		radial-gradient(
-			100% 100% at 50% 50%,
-			hsl(var(--hue),90%,10%),
-			hsl(var(--hue),90%,23%) 4.65em,
-			hsl(var(--hue),90%,55%) 4.85em 4.9em,
-			#17181c 5.1em 6.85em,
-			#17181c00 6.9em
-		),
-		radial-gradient(100% 100% at 50% 0,#f1f2f4,#8f95a3);
-    border-radius: 50%;
-    box-shadow: 0 -0.25em 1.5em 0.5em #0004;
-    display: flex;
-    flex-direction: column;
-    line-height: 1;
-    position: relative;
-    padding: 1em;
-    text-align: center;
-    width: 15em;
-    height: 15em;
-}
-.temp:after, .temp__dial, .temp__comet, .temp__fizz {
-	position: absolute;
-}
-.temp:after, .temp__comet, .temp__dial {
-	border-radius: inherit;
-}
-.temp:after, .temp__dial {
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
-.temp:after {
-	background:
-		radial-gradient(100% 100% at 67% 17%,#fff3,#fff0 6em);
-	content: "";
-	display: block;
-	z-index: 2;
-}
-.temp__logo {
-	font-family: "Baloo Paaji 2", sans-serif;
-	color: #abafba;
-	letter-spacing: -0.1em;
-	margin-bottom: 3.75em;
-	text-transform: lowercase;
-	transform: scaleY(1.1);
-}
-.temp__comet {
-	background:
-		radial-gradient(
-			100% 100% at 50% 50%,
-			hsl(var(--hue),90%,10%),
-			hsl(var(--hue),90%,20%) 3.25em,
-			hsl(var(--hue),90%,17%) 3.3em 3.35em,
-			hsla(var(--hue),90%,17%,0) 3.4em
-		),
-		conic-gradient(#fff0,#fff calc(1deg * var(--angle)),#fff0 calc(1deg * var(--angle)));
-	top: calc(50% - 3.5em);
-	left: calc(50% - 3.5em);
-	width: 7em;
-	height: 7em;
-}
-.temp__fizz {
-	display: block;
-	top: calc(50% - 3.3em);
-	left: calc(50% - 3.3em);
-	width: 6.6em;
-	height: 6.6em;
-}
-.temp__label, .temp__value {
-	color: #fff;
-	font-family: "Unica One", monospace;
-	position: relative;
-	z-index: 1;
-}
-.temp__label {
-	font-size: 0.6em;
-	letter-spacing: 0.5em;
-	text-transform: uppercase;
-	transform: translateX(0.25em) scaleY(0.9);
-}
-.temp__value {
-	font-size: 2.5em;
-}
-.temp__dial {
-	cursor: grab;
-	z-index: 3;
-}
-.temp__dial:active {
-	cursor: grabbing;
-}
-
- .button-group {
-            display: flex;
-        }
-
-        .button-group form {
-            margin-right: 10px;
-        }
-.led {
-  width: 20px;
-  height: 20px;
-  background-color: transparent;
-  border-radius: 50%;
-  opacity: 0;
-  animation: blink-animation 1s forwards;
-}
-
-@keyframes blink-animation {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-
-
+        .bg-gradient-primary, .topbar {
+    background-color: #000102;
+    background-image: linear-gradient(180deg,#08163d 10%,#0a1536 100%);
+    background-size: cover;}
     </style>
 </head>
-<body>
-<div class="sidebar">
-    <ul class="nav flex-column">
-        <li class="nav-item">
-            <button class="nav-link active btn-center-icon" type="button">
-                <svg height="1.5em" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                    <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                    <style>svg{fill:#ffffff}</style>
-                    <path d="M192 32c0-17.7 14.3-32 32-32C383.1 0 512 128.9 512 288c0 17.7-14.3 32-32 32s-32-14.3-32-32C448 164.3 347.7 64 224 64c-17.7 0-32-14.3-32-32zM60.6 220.6L164.7 324.7l28.4-28.4c-.7-2.6-1.1-5.4-1.1-8.3c0-17.7 14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32c-2.9 0-5.6-.4-8.3-1.1l-28.4 28.4L291.4 451.4c14.5 14.5 11.8 38.8-7.3 46.3C260.5 506.9 234.9 512 208 512C93.1 512 0 418.9 0 304c0-26.9 5.1-52.5 14.4-76.1c7.5-19 31.8-21.8 46.3-7.3zM224 96c106 0 192 86 192 192c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-70.7-57.3-128-128-128c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/>
-                </svg>
-                <span class="menu-text badge badge-dark">
-          <span class="badge-triangle"></span>
-          Tantrayut Telecom.
-        </span>
-            </button>
-        </li>
-        <li class="nav-item">
-            <form action="/home" method="POST">
-                {% csrf_token %}
-                <button class="nav-link btn-center-icon" type="submit">
-                    <svg height="1.5em" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
-                        <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                        <style>svg{fill:#ffffff}</style>
-                        <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
-                    </svg>
-                    <span class="menu-text badge badge-dark">
-                  <span class="badge-triangle"></span>
-                  Home
-                </span>
-                </button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form action="/restart" method="POST">
-                {% csrf_token %}
-                <button class="nav-link btn-center-icon" type="submit">
-                    <svg height="1.5em" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                        <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                        <style>svg{fill:#ffffff}</style>
-                        <path d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160H336c-17.7 0-32 14.3-32 32s14.3 32 32 32H463.5c0 0 0 0 0 0h.4c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v51.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1V448c0 17.7 14.3 32 32 32s32-14.3 32-32V396.9l17.6 17.5 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352H176c17.7 0 32-14.3 32-32s-14.3-32-32-32H48.4c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z"/>
-                    </svg>
-                    <span class="menu-text badge badge-dark">
-                        <span class="badge-triangle"></span>
-                            Restart
-                        </span>
-                </button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form action="/shutdown" method="POST">
-                {% csrf_token %}
-                <button class="nav-link btn-center-icon" type="submit">
-                    <svg height="1.5em" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                        <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                        <style>svg{fill:#ffffff}</style>
-                        <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"/>
-                    </svg>
-                    <span class="menu-text badge badge-dark">
-                  <span class="badge-triangle"></span>
-                  Shutdown
-                </span>
-                </button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <button class="nav-link btn-center-icon" data-target="#safe_mode_modal" data-toggle="modal" type="button">
-                <svg height="1.5em" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                    <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                    <style>svg{fill:#f7f7f7}</style>
-                    <path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0z"/>
-                </svg>
-                <span class="menu-text badge badge-dark">
-          <span class="badge-triangle"></span>
-          Safe Mode
-        </span>
-            </button>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link btn-center-icon" href="settings">
-                <svg height="1.5em" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                    <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                    <style>svg{fill:#fafafa}</style>
-                    <path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/>
-                </svg>
-                <span class="menu-text badge badge-dark">
-                  <span class="badge-triangle"></span>
-                  Settings
-                </span>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon ">
+                    MCCU
+                </div>
+                <div class="sidebar-brand-text mx-3"></div>
             </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link btn-center-icon" href="/profile">
-                <svg height="1.5em" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
-                    <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                    <style>svg{fill:#ededed}</style>
-                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
-                </svg>
-                <span class="menu-text badge badge-dark ">
-                  <span class="badge-triangle"></span>
-                  Profile
-                </span>
-            </a>
-        </li>
-        <li class="nav-item bottom-menu ">
-            <form action="/logout" method="POST">
-                {% csrf_token %}
-                <button class="btn nav-link btn-center-icon" type="submit">
-                    <svg height="1.5em" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                        <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                        <style>svg{fill:#ffffff}</style>
-                        <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Commands
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <form action="/home" method="POST">
+                    {% csrf_token %}
+                    <button class="nav-link bg-transparent border-0" type="submit"
+                        >
+                        <svg style="fill:#fff;" height="0.7em" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+
+                            <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+                        </svg>
+                        <span>Home</span>
+                    </button>
+                </form>
+
+            </li>
+            <li class="nav-item">
+                <form action="/restart" method="POST">
+                    {% csrf_token %}
+                    <button class="nav-link bg-transparent border-0 " type="submit"
+                        >
+                        <svg style="fill:#fff;" height="0.7em" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+
+                            <path d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160H336c-17.7 0-32 14.3-32 32s14.3 32 32 32H463.5c0 0 0 0 0 0h.4c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v51.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1V448c0 17.7 14.3 32 32 32s32-14.3 32-32V396.9l17.6 17.5 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352H176c17.7 0 32-14.3 32-32s-14.3-32-32-32H48.4c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z"/>
+                        </svg>
+                        <span>Restart</span>
+                    </button>
+                </form>
+            </li>
+            <!-- Nav Item - Utilities Collapse Menu -->
+             <li class="nav-item">
+                 <form action="/shutdown" method="POST">
+                     {% csrf_token %}
+                    <button class="nav-link bg-transparent border-0 " type="submit"
+                        >
+                        <svg style="fill:#fff;" height="0.7em" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+
+                            <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"/>
+                        </svg>
+                        <span>Shutdown</span>
+                    </button>
+                 </form>
+            </li>
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Addons
+            </div>
+
+
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <button class="nav-link bg-transparent border-0" data-target="#safe_mode_modal" data-toggle="modal" type="button">
+                    <svg style="fill:#fff;" height="0.7em" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+
+                        <path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0z"/>
                     </svg>
-                    <span class="menu-text badge badge-dark">
-                    <span class="badge-triangle"></span>
-                        Logout
-                    </span>
+                    <span>Safe Mode</span>
                 </button>
-            </form>
-        </li>
-    </ul>
-</div>
+            </li>
 
-<!-- Header -->
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
 
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle">
 
-<div class="content main-dashbaord">
-    <!-- Navigation -->
-    <div class="fixed-top-1">
-
-        <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
-            <div class="container">
-                <a class="navbar-brand" href="index.html" style="text-transform: uppercase;"> TANTRAYUT
-                    TELECOMMUNICATIONS MCCU</a>
-                <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
-                        data-target="#navbarResponsive" data-toggle="collapse" type="button">
-                    <span class="navbar-toggler-icon"></span>
+                    <svg style="fill:#fff;" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    height="1em" viewBox="0 0 30.728 30.729"
+                                     xml:space="preserve">
+                                <g>
+                                    <path d="M29.996,24.08c-0.977,0.978-2.561,0.978-3.535,0L15.365,12.985L4.268,24.081C3.78,24.568,3.14,24.812,2.5,24.812
+                                        s-1.28-0.244-1.768-0.731c-0.977-0.978-0.977-2.56,0-3.535L15.364,5.915l14.63,14.629C30.972,21.521,30.972,23.104,29.996,24.08z"
+                                        />
+                                </g>
+                                </svg>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
+            </div>
 
+
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+
+
+                      <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                          <li class="nav-item active">
+                            <a class="nav-link" href="/dashboard">Dashboard </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/satellites">Satellite</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/monitor">Monitor</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link " href="/diagnostic">Diagnostic</a>
+                          </li>
+                        </ul>
+                      </div>
+
+
+                    <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/dashboard">Dashboard</a>
-                        </li>
 
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/satellites">Satellite</a>
-                        </li>
+                        <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/monitor">Monitor</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="/dashboard">Diagnostic</a>
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{request.user.get_full_name}}</span>
+                                <img class="img-profile rounded-circle"
+                                    src='{% static "img/undraw_profile.svg" %}'>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="/profile">
+                                    <svg height="1.0em"  version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     viewBox="0 0 402.161 402.161" xml:space="preserve">
+                                        <style>svg{fill:#000000}</style>
+                                        <g>
+                                            <g>
+                                                <g>
+                                                    <path d="M201.08,49.778c-38.794,0-70.355,31.561-70.355,70.355c0,18.828,7.425,40.193,19.862,57.151
+                                                        c14.067,19.181,32,29.745,50.493,29.745c18.494,0,36.426-10.563,50.494-29.745c12.437-16.958,19.862-38.323,19.862-57.151
+                                                        C271.436,81.339,239.874,49.778,201.08,49.778z M201.08,192.029c-13.396,0-27.391-8.607-38.397-23.616
+                                                        c-10.46-14.262-16.958-32.762-16.958-48.28c0-30.523,24.832-55.355,55.355-55.355s55.355,24.832,55.355,55.355
+                                                        C256.436,151.824,230.372,192.029,201.08,192.029z"/>
+                                                    <path d="M201.08,0C109.387,0,34.788,74.598,34.788,166.292c0,91.693,74.598,166.292,166.292,166.292
+                                                        s166.292-74.598,166.292-166.292C367.372,74.598,292.773,0,201.08,0z M201.08,317.584c-30.099-0.001-58.171-8.839-81.763-24.052
+                                                        c0.82-22.969,11.218-44.503,28.824-59.454c6.996-5.941,17.212-6.59,25.422-1.615c8.868,5.374,18.127,8.099,27.52,8.099
+                                                        c9.391,0,18.647-2.724,27.511-8.095c8.201-4.97,18.39-4.345,25.353,1.555c17.619,14.93,28.076,36.526,28.895,59.512
+                                                        C259.25,308.746,231.178,317.584,201.08,317.584z M296.981,283.218c-3.239-23.483-15.011-45.111-33.337-60.64
+                                                        c-11.89-10.074-29.1-11.256-42.824-2.939c-12.974,7.861-26.506,7.86-39.483-0.004c-13.74-8.327-30.981-7.116-42.906,3.01
+                                                        c-18.31,15.549-30.035,37.115-33.265,60.563c-33.789-27.77-55.378-69.868-55.378-116.915C49.788,82.869,117.658,15,201.08,15
+                                                        c83.423,0,151.292,67.869,151.292,151.292C352.372,213.345,330.778,255.448,296.981,283.218z"/>
+                                                    <path d="M302.806,352.372H99.354c-4.142,0-7.5,3.358-7.5,7.5c0,4.142,3.358,7.5,7.5,7.5h203.452c4.142,0,7.5-3.358,7.5-7.5
+                                                        C310.307,355.73,306.948,352.372,302.806,352.372z"/>
+                                                    <path d="M302.806,387.161H99.354c-4.142,0-7.5,3.358-7.5,7.5c0,4.142,3.358,7.5,7.5,7.5h203.452c4.142,0,7.5-3.358,7.5-7.5
+                                                        C310.307,390.519,306.948,387.161,302.806,387.161z"/>
+                                                </g>
+                                            </g>
+                                        </g>
+                                        </svg>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="/settings">
+                                    <svg fill="#000000" height="1em" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                         <style>svg{fill:#000000}</style>
+                                        <path d="M30.015 12.97l-2.567-0.569c-0.2-0.64-0.462-1.252-0.762-1.841l1.389-2.313c0.518-0.829 0.78-2.047 0-2.829l-1.415-1.414c-0.78-0.781-2.098-0.64-2.894-0.088l-2.251 1.434c-0.584-0.303-1.195-0.563-1.829-0.768l-0.576-2.598c-0.172-0.953-1.005-1.984-2.11-1.984h-2c-1.104 0-1.781 1.047-2 2l-0.642 2.567c-0.678 0.216-1.328 0.492-1.948 0.819l-2.308-1.47c-0.795-0.552-2.114-0.692-2.894 0.088l-1.415 1.414c-0.781 0.782-0.519 2 0 2.828l1.461 2.435c-0.274 0.552-0.517 1.123-0.705 1.72l-2.566 0.569c-0.953 0.171-1.984 1.005-1.984 2.109v2c0 1.105 1.047 1.782 2 2l2.598 0.649c0.179 0.551 0.404 1.080 0.658 1.593l-1.462 2.438c-0.518 0.828-0.78 2.047 0 2.828l1.415 1.414c0.78 0.782 2.098 0.64 2.894 0.089l2.313-1.474c0.623 0.329 1.277 0.608 1.96 0.823l0.64 2.559c0.219 0.953 0.896 2 2 2h2c1.105 0 1.938-1.032 2.11-1.985l0.577-2.604c0.628-0.203 1.23-0.459 1.808-0.758l2.256 1.438c0.796 0.552 2.114 0.692 2.895-0.089l1.415-1.414c0.78-0.782 0.518-2 0-2.828l-1.39-2.317c0.279-0.549 0.521-1.12 0.716-1.714l2.599-0.649c0.953-0.219 2-0.895 2-2v-2c0-1.104-1.031-1.938-1.985-2.11zM30.001 16.939c-0.085 0.061-0.245 0.145-0.448 0.192l-3.708 0.926-0.344 1.051c-0.155 0.474-0.356 0.954-0.597 1.428l-0.502 0.986 1.959 3.267c0.125 0.2 0.183 0.379 0.201 0.485l-1.316 1.314c-0.127-0.040-0.271-0.092-0.341-0.14l-3.292-2.099-1.023 0.529c-0.493 0.256-0.999 0.468-1.503 0.631l-1.090 0.352-0.824 3.723c-0.038 0.199-0.145 0.36-0.218 0.417h-1.8c-0.061-0.085-0.145-0.245-0.191-0.448l-0.921-3.681-1.066-0.338c-0.549-0.173-1.097-0.404-1.63-0.684l-1.028-0.543-3.293 2.099c-0.135 0.091-0.279 0.143-0.409 0.143l-1.311-1.276c0.018-0.104 0.072-0.274 0.181-0.449l2.045-3.408-0.487-0.98c-0.227-0.462-0.407-0.895-0.547-1.325l-0.343-1.052-3.671-0.918c-0.231-0.052-0.398-0.139-0.485-0.2v-1.86c0.001 0.001 0.002 0.001 0.005 0.001 0.034 0 0.198-0.117 0.335-0.142l3.772-0.835 0.346-1.103c0.141-0.449 0.333-0.917 0.588-1.43l0.487-0.98-2.024-3.373c-0.125-0.201-0.184-0.38-0.201-0.485l1.315-1.314c0.128 0.041 0.271 0.093 0.34 0.14l3.354 2.138 1.027-0.542c0.527-0.278 1.073-0.507 1.622-0.682l1.063-0.338 0.912-3.649c0.053-0.231 0.138-0.398 0.2-0.485h1.859c-0.014 0.020 0.115 0.195 0.142 0.339l0.84 3.794 1.089 0.352c0.511 0.165 1.023 0.38 1.523 0.639l1.023 0.532 3.224-2.053c0.135-0.092 0.279-0.143 0.409-0.143l1.313 1.276c-0.017 0.104-0.072 0.276-0.181 0.45l-1.98 3.296 0.505 0.988c0.273 0.533 0.48 1.033 0.635 1.529l0.346 1.104 3.697 0.82c0.224 0.041 0.398 0.171 0.434 0.241zM16.013 9.99c-3.321 0-6.023 2.697-6.023 6.010s2.702 6.010 6.023 6.010 6.023-2.697 6.023-6.009c0-3.313-2.702-6.010-6.023-6.010zM16 20c-2.205 0-4-1.794-4-4s1.794-4 4-4c2.206 0 4 1.794 4 4s-1.794 4-4 4z"></path>
+                                    </svg>
+                                    Settings
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <svg fill="#000000" height="1em" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                    <style>svg{fill:#000000}</style>
+
+                                        <path d="M0 9.875v12.219c0 1.125 0.469 2.125 1.219 2.906 0.75 0.75 1.719 1.156 2.844 1.156h6.125v-2.531h-6.125c-0.844 0-1.5-0.688-1.5-1.531v-12.219c0-0.844 0.656-1.5 1.5-1.5h6.125v-2.563h-6.125c-1.125 0-2.094 0.438-2.844 1.188-0.75 0.781-1.219 1.75-1.219 2.875zM6.719 13.563v4.875c0 0.563 0.5 1.031 1.063 1.031h5.656v3.844c0 0.344 0.188 0.625 0.5 0.781 0.125 0.031 0.25 0.031 0.313 0.031 0.219 0 0.406-0.063 0.563-0.219l7.344-7.344c0.344-0.281 0.313-0.844 0-1.156l-7.344-7.313c-0.438-0.469-1.375-0.188-1.375 0.563v3.875h-5.656c-0.563 0-1.063 0.469-1.063 1.031z"></path>
+                                    </svg>
+                                    Logout
+                                </a>
+                            </div>
                         </li>
 
                     </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800"> {% block page_title %}{% endblock %}</h1>
+
+                    </div>
+                    <hr>
+
+                    {% if messages %}
+
+                        {% for message in messages %}
+
+
+                              <div class="alert alert-info">
+                                {{ message }}
+                              </div>
+
+
+                        {% endfor %}
+
+                    {% endif %}
+
+
+                    {% block content %}{% endblock %}
+
+
+
+
                 </div>
+                <!-- /.container-fluid -->
+
             </div>
-        </nav>
-    </div>
-    <!-- Header End-->
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li
-                class="{{ message.tags }} alert alert-primary " endif if message.tags role="alert" {% {%>{{message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; 2023</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
         </div>
+        <!-- End of Content Wrapper -->
+
     </div>
-    {% block content %}{% endblock %}
-</div>
+    <!-- End of Page Wrapper -->
 
-<div class="inset-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-1">
-                <div class="led">
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                height="1em" viewBox="0 0 30.728 30.729"
+                 xml:space="preserve">
+            <g>
+                <path d="M29.996,24.08c-0.977,0.978-2.561,0.978-3.535,0L15.365,12.985L4.268,24.081C3.78,24.568,3.14,24.812,2.5,24.812
+                    s-1.28-0.244-1.768-0.731c-0.977-0.978-0.977-2.56,0-3.535L15.364,5.915l14.63,14.629C30.972,21.521,30.972,23.104,29.996,24.08z"
+                    />
+            </g>
+            </svg>
+    </a>
 
-                    <svg
-                            id="svg7041"
-                            inkscape:version="0.47 r22583"
-                            sodipodi:docname="led_green_black.svg"
-                            version="1.1"
-                            viewBox="0 0 6 6"
-                            xmlns="http://www.w3.org/2000/svg"
-                            xmlns:cc="http://creativecommons.org/ns#"
-                            xmlns:dc="http://purl.org/dc/elements/1.1/"
-                            xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-                            xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-                            xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-                    >
-                        <defs
-                                id="defs7043"
-                        >
-                            <radialGradient
-                                    cx="47.5"
-                                    cy="21.5"
-                                    gradientUnits="userSpaceOnUse"
-                                    id="radialGradient7003"
-                                    inkscape:collect="always"
-                                    r="2.5"
-                            >
-                                <stop
-                                        id="stop6999"
-                                        offset="0"
-                                        style="stop-color:#00c300;stop-opacity:0"
-                                />
-                                <stop
-                                        id="stop7005"
-                                        offset="0.82"
-                                        style="stop-color:#00c300;stop-opacity:.49804"
-                                />
-                                <stop
-                                        id="stop7001"
-                                        offset="1"
-                                        style="stop-color:#aeffae"
-                                />
-                            </radialGradient
-                            >
-                            <radialGradient
-                                    cx="47.5"
-                                    cy="21.5"
-                                    gradientUnits="userSpaceOnUse"
-                                    id="radialGradient6993"
-                                    inkscape:collect="always"
-                                    r="2.5"
-                            >
-                                <stop
-                                        id="stop6245"
-                                        offset="0"
-                                        style="stop-color:#ffffff"
-                                />
-                                <stop
-                                        id="stop6247"
-                                        offset="1"
-                                        style="stop-color:#0dee1b;stop-opacity:0"
-                                />
-                            </radialGradient
-                            >
-                            <radialGradient
-                                    cx="-87.5"
-                                    cy="62.5"
-                                    gradientUnits="userSpaceOnUse"
-                                    id="radialGradient7039"
-                                    inkscape:collect="always"
-                                    r="2.5"
-                            >
-                                <stop
-                                        id="stop6193-9"
-                                        offset="0"
-                                        style="stop-color:#000000"
-                                />
-                                <stop
-                                        id="stop6203-9"
-                                        offset=".51649"
-                                        style="stop-color:#000000"
-                                />
-                                <stop
-                                        id="stop6199-8"
-                                        offset="0.76"
-                                        style="stop-color:#a6a6a6"
-                                />
-                                <stop
-                                        id="stop6201-0"
-                                        offset="0.9"
-                                        style="stop-color:#353535"
-                                />
-                                <stop
-                                        id="stop6195-0"
-                                        offset="1"
-                                        style="stop-color:#000000"
-                                />
-                            </radialGradient
-                            >
-                        </defs
-                        >
-                        <sodipodi:namedview
-                                bordercolor="#666666"
-                                borderopacity="1.0"
-                                id="base"
-                                inkscape:current-layer="layer1"
-                                inkscape:cx="6.5416986"
-                                inkscape:cy="3.3174563"
-                                inkscape:document-units="px"
-                                inkscape:pageopacity="0.0"
-                                inkscape:pageshadow="2"
-                                inkscape:window-height="1043"
-                                inkscape:window-maximized="0"
-                                inkscape:window-width="1154"
-                                inkscape:window-x="107"
-                                inkscape:window-y="69"
-                                inkscape:zoom="52.58046"
-                                pagecolor="#ffffff"
-                                showgrid="false"
-                        />
-                        <g
-                                id="layer1"
-                                inkscape:groupmode="layer"
-                                inkscape:label="Layer 1"
-                                transform="translate(-437 -640.79)"
-                        >
-                            <path
-                                    d="m-85 62.5c0 1.3807-1.1193 2.5-2.5 2.5s-2.5-1.1193-2.5-2.5 1.1193-2.5 2.5-2.5 2.5 1.1193 2.5 2.5z"
-                                    id="path6189-3"
-                                    sodipodi:cx="-87.5"
-                                    sodipodi:cy="62.5"
-                                    sodipodi:rx="2.5"
-                                    sodipodi:ry="2.5"
-                                    sodipodi:type="arc"
-                                    style="fill:url(#radialGradient7039)"
-                                    transform="matrix(1.2 0 0 1.2 545 568.79)"
-                            />
-                            <path
-                                    d="m50 21.5c0 1.381-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5 1.119-2.5 2.5-2.5c1.3807 0 2.5 1.1193 2.5 2.5z"
-                                    id="path6983"
-                                    sodipodi:cx="47.5"
-                                    sodipodi:cy="21.5"
-                                    sodipodi:rx="2.5"
-                                    sodipodi:ry="2.5"
-                                    sodipodi:type="arc"
-                                    style="fill:#00c300"
-                                    transform="translate(392.5 622.29)"
-                            />
-                            <path
-                                    d="m50 21.5c0 1.381-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5 1.119-2.5 2.5-2.5c1.3807 0 2.5 1.1193 2.5 2.5z"
-                                    id="path6985"
-                                    sodipodi:cx="47.5"
-                                    sodipodi:cy="21.5"
-                                    sodipodi:rx="2.5"
-                                    sodipodi:ry="2.5"
-                                    sodipodi:type="arc"
-                                    style="fill:url(#radialGradient6993)"
-                                    transform="translate(392.9 621.89)"
-                            />
-                            <path
-                                    d="m50 21.5c0 1.381-1.119 2.5-2.5 2.5s-2.5-1.119-2.5-2.5 1.119-2.5 2.5-2.5c1.3807 0 2.5 1.1193 2.5 2.5z"
-                                    id="path6995"
-                                    sodipodi:cx="47.5"
-                                    sodipodi:cy="21.5"
-                                    sodipodi:rx="2.5"
-                                    sodipodi:ry="2.5"
-                                    sodipodi:type="arc"
-                                    style="fill:url(#radialGradient7003)"
-                                    transform="translate(392.5 622.29)"
-                            />
-                        </g
-                        >
-                        <metadata
-                        >
-                            <rdf:RDF
-                            >
-                                <cc:Work
-                                >
-                                    <dc:format
-                                    >image/svg+xml
-                                    </dc:format
-                                    >
-                                    <dc:type
-                                            rdf:resource="http://purl.org/dc/dcmitype/StillImage"
-                                    />
-                                    <cc:license
-                                            rdf:resource="http://creativecommons.org/licenses/publicdomain/"
-                                    />
-                                    <dc:publisher
-                                    >
-                                        <cc:Agent
-                                                rdf:about="http://openclipart.org/"
-                                        >
-                                            <dc:title
-                                            >Openclipart
-                                            </dc:title
-                                            >
-                                        </cc:Agent
-                                        >
-                                    </dc:publisher
-                                    >
-                                    <dc:title
-                                    >LED, Green
-                                    </dc:title
-                                    >
-                                    <dc:date
-                                    >2010-10-02T04:06:06
-                                    </dc:date
-                                    >
-                                    <dc:description
-                                    >A green LED with a black surround
-                                    </dc:description
-                                    >
-                                    <dc:source
-                                    >https://openclipart.org/detail/88117/led-green-by-bnielsen
-                                    </dc:source
-                                    >
-                                    <dc:creator
-                                    >
-                                        <cc:Agent
-                                        >
-                                            <dc:title
-                                            >bnielsen
-                                            </dc:title
-                                            >
-                                        </cc:Agent
-                                        >
-                                    </dc:creator
-                                    >
-                                    <dc:subject
-                                    >
-                                        <rdf:Bag
-                                        >
-                                            <rdf:li
-                                            >green
-                                            </rdf:li
-                                            >
-                                            <rdf:li
-                                            >led
-                                            </rdf:li
-                                            >
-                                            <rdf:li
-                                            >light
-                                            </rdf:li
-                                            >
-                                        </rdf:Bag
-                                        >
-                                    </dc:subject
-                                    >
-                                </cc:Work
-                                >
-                                <cc:License
-                                        rdf:about="http://creativecommons.org/licenses/publicdomain/"
-                                >
-                                    <cc:permits
-                                            rdf:resource="http://creativecommons.org/ns#Reproduction"
-                                    />
-                                    <cc:permits
-                                            rdf:resource="http://creativecommons.org/ns#Distribution"
-                                    />
-                                    <cc:permits
-                                            rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
-                                    />
-                                </cc:License
-                                >
-                            </rdf:RDF
-                            >
-                        </metadata
-                        >
-                    </svg
-                    >
-
-
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
-
-            </div>
-
-            <div class="col-2">
-
-                Terminal Output
-            </div>
-
-            <div class="col-9">
-
-                <div class="terminal-div display-stream-here" id="stream-output">
-                    This is a terminal-like div.
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <form action="/logout" method="True">
+                    <button class="btn btn-primary" type="submit">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Modal -->
+
+<!-- Safe Mode Modal -->
 <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="safe_mode_modal" role="dialog"
      tabindex="-1">
     <div class="modal-dialog" role="document">
@@ -1000,88 +371,18 @@ li {
     </div>
 </div>
 
-<script>
-
-    const led = document.querySelector('.led');
-
-function blinkOnce() {
-  led.style.opacity = '0';
-  led.style.animation = 'none';
-
-  setTimeout(() => {
-    led.style.animation = 'blink-animation 1s forwards';
-  }, 10);
-}
-
-    function toggleSidebar() {
-      const sidebar = document.querySelector('.sidebar');
-      sidebar.classList.toggle('expanded');
-    }
-</script>
-<script>
-<!--    const eventSource = new EventSource('http://127.0.0.1:8000/csv_stream');-->
-
-<!--    const outputDiv = document.getElementById('stream-output');-->
-
-<!--    eventSource.onmessage = function(event) {-->
-<!--      const data = event.data;-->
-<!--      const columns = data.split(','); // Split the CSV data into columns-->
-
-<!--      // Clear the existing data-->
-<!--      outputDiv.innerHTML = '';-->
-
-<!--      // Create a container element to hold the columns-->
-<!--      const row = document.createElement('div');-->
-<!--      row.className = 'row';-->
-<!--      if (columns.length > 10) {-->
-<!--        blinkOnce();-->
-<!--      }-->
-
-<!--       $("#date").text(columns[0]);-->
-<!--       $("#time").text(columns[1]);-->
-
-<!--       $("#latitude").text(columns[2]);-->
-<!--       $("#longitude").text(columns[3]);-->
-
-<!--       $("#roll").text(columns[4]);-->
-<!--       $("#pitch").text(columns[5]);-->
-<!--       $("#yaw").text(columns[6]);-->
-
-<!--       $("#temp").text(columns[7]);-->
-<!--       $("#current").text(columns[8]);-->
-
-<!--       $("#azimuth").text(columns[9]);-->
-<!--       $("#elevation").text(columns[10]);-->
-<!--       $("#crossel").text(columns[11]);-->
-<!--       $("#polarization").text(columns[12]);-->
-
-<!--       $("#antenna_target_azimuth").text(columns[13]);-->
-<!--       $("#antenna_target_elevation").text(columns[14]);-->
-<!--       $("#antenna_target_polarization").text(columns[15]);-->
-
-
-<!--       $("#satellite_name").text(columns[16]);-->
-<!--       $("#channel").text(columns[17]);-->
-
-
-<!--       $("#motor_azimuth").text(columns[18]);-->
-<!--       $("#motor_elevation").text(columns[19]);-->
-<!--       $("#motor_cross_el").text(columns[20]);-->
-<!--       $("#motor_polarization").text(columns[21]);-->
-
-
-<!--      // Render each column in a separate HTML element-->
-<!--      columns.forEach(function(columnData) {-->
-<!--        const column = document.createElement('p');-->
-<!--        column.textContent = columnData +"-*-";-->
-<!--        row.appendChild(column);-->
-<!--      });-->
-
-<!--      outputDiv.appendChild(row); // Append the row to the output container-->
-<!--    };-->
 
 
 
-</script>
+
+
+    <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+
+
 </body>
+
 </html>
