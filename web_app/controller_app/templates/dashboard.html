@@ -688,19 +688,19 @@ $(document).ready(function () {
            // Specify chart options
         var options = {
             title: {
-                text: 'Beacon Power'
+                text: 'Beacon Power (dBm)'
             },
             tooltip: {
                 formatter: '{b}<br />Power: {c} dBm'
             },
             xAxis: {
                 type: 'category',
-                data: ['Ku-Band (bDm)']
+                data: ['RSSI(dBm) Ku-Band']
             },
             yAxis: {
                 type: 'value',
                 min: -80,
-                max: -66,
+                max: -60,
                 axisLabel: {
                     formatter: '{value}'
                 }
