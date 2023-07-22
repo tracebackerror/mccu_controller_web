@@ -61,7 +61,7 @@ def stream_csv(request):
         with open('/Users/tracebackerror/Documents/GitHub/mccu_controller_web/slsc/temp_data.csv', 'r') as csv_file:
             csv_reader = csv.reader(csv_file)
             for row in csv_reader:
-                yield f'data: {",".join(row)}\n\n'
+                yield 'data: {}\n\n'.format(",".join(row))
                 #time.sleep(1)  # Delay between sending rows, adjust as needed
 
     response = StreamingHttpResponse(event_stream(), content_type='text/event-stream')
@@ -321,7 +321,8 @@ class SettingsPage(LoginRequiredMixin, TemplateView):
             ip_address_3 = request.POST.get("ip_address_3").strip()
             ip_address_4 = request.POST.get("ip_address_4").strip()
 
-            ip_to_save = f"{ip_address_1}.{ip_address_2}.{ip_address_3}.{ip_address_4}"
+            #ip_to_save = f"{ip_address_1}.{ip_address_2}.{ip_address_3}.{ip_address_4}"
+            ip_to_save = "{}.{}.{}.{}".format(ip_address_1, ip_address_2, ip_address_3, ip_address_4)
             port = request.POST.get("port")
             SLSCNetworkSettings.objects.all().delete()
             models_to_save = SLSCNetworkSettings(ip_address=ip_to_save, port_number=port )
