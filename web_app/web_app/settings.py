@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'controller_app',
 ]
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    BASE_DIR.joinpath("static"),
     "/var/www/static/",
 ]
 
