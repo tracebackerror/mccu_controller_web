@@ -675,83 +675,91 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
-
     // Initialize the chart
-        var chart = echarts.init(document.getElementById('beacon-power-chart'));
+    var chart = echarts.init(document.getElementById('beacon-power-chart'));
 
+    // Generate random data for the Y-axis
+    function generateData() {
+        return Math.floor(Math.random() * (-66 - (-80) + 1)) - 80;
+    }
 
-        // Generate random data for the Y-axis
-        function generateData() {
-            return Math.floor(Math.random() * (-66 - (-80) + 1)) - 80;
-        }
-
-           // Specify chart options
-        var options = {
-            title: {
-                text: 'Beacon Power (dBm)'
+    // Specify chart options
+    var options = {
+        title: {
+            text: 'Beacon Power (dBm)'
+        },
+        tooltip: {
+            formatter: '{b}<br />Power: {c} dBm'
+        },
+        xAxis: {
+            type: 'category',
+            data: ['RSSI(dBm) Ku-Band']
+        },
+        yAxis: {
+            type: 'value',
+            interval: 2,
+            min: -80,  // Use a negative value to stick the bars from the bottom
+            max: -60,
+            axisTick: {
+                inside: true  // Move the axis ticks inside the chart
             },
-            tooltip: {
-                formatter: '{b}<br />Power: {c} dBm'
+            axisLabel: {
+                formatter: function(value) {
+                    if (value === -74) {
+                        // Special case for -74, display as "-74 (threshold)"
+                        return value+" (threshold)";
+                    } else {
+                        return value;
+                    }
+            }
             },
-            xAxis: {
-                type: 'category',
-                data: ['RSSI(dBm) Ku-Band']
-            },
-            yAxis: {
-                type: 'value',
-                min: -80,
-                max: -60,
-                axisLabel: {
-                    formatter: '{value}'
-                }
-            },
-            series: [{
-                name: 'Power',
-                type: 'bar',
-                barWidth: '80%',
-                data: [generateData()],
-                itemStyle: {
-                    normal: {
-                        color: 'gray'
-                    },
-                    normal: {
-                        color: {
-                            type: 'linear',
-                            x: 0,
-                            y: 0,
-                            x2: 0,
-                            y2: 1,
-                            colorStops: [{
-                                offset: 0,
-                                color: 'gray'  // Start color (gray)
-                            }, {
-                                offset: 1,
-                                color: 'orange'  // End color (orange)
-                            }]
-                        }
+            inverse: true  // Start bars from the bottom and grow upwards
+        },
+        grid: {
+            left: '10%',  // Add some margin to the left side
+            right: '5%',  // Add some margin to the right side
+            bottom: '8%', // Add some margin to the bottom side
+            containLabel: true  // Ensure the labels are contained within the grid
+        },
+        series: [{
+            name: 'Power',
+            type: 'bar',
+            barWidth: '80%',
+            data: [generateData()],
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        // Set color based on threshold condition
+                        return params.value > -74 ? 'yellow' : 'red';
                     }
                 }
+            },
+            label: {
+                show: true,
+                position: 'bottom', // Show label at the bottom of the bars
+                formatter: function(params) {
+                    // Show label for the threshold at -74
+                    return params.value === -74 ? 'Threshold: -74 dBm' : '';
+                }
+            }
+        }]
+    };
+
+    // Set the options to the chart
+    chart.setOption(options);
+
+    // Update chart data and animation
+    function updateChartData() {
+        var newData = generateData();
+        chart.setOption({
+            series: [{
+                data: [newData]
             }]
-        };
+        });
+    }
 
-
-
-
-        // Update chart data and animation
-        function updateChartData() {
-            var newData = generateData();
-            chart.setOption({
-                series: [{
-                    data: [newData]
-                }]
-            });
-        }
-
-        // Set the options to the chart
-        chart.setOption(options);
-
-        // Update chart data every 2 seconds
-        // setInterval(updateChartData, 2000);
+    // Update chart data every 2 seconds
+    // setInterval(updateChartData, 2000);
 
     const eventSource = new EventSource('/csv_stream');
 
