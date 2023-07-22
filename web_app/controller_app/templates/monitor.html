@@ -45,7 +45,7 @@
 <div class="container-fluid content-top">
     <div class="row">
       <div class="col-sm-6 ">
-        <div id="temperature-chart" style="width:100%; height:300px;"></div>
+        <div id="beacon-power-chart" style="width:100%; height:300px;"></div>
       </div>
       <div class="col-sm-6">
         <div id="current-chart" style="width:100%; height:300px;"></div>
@@ -53,10 +53,10 @@
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <div id="elevation-chart" style="width:100%; height:300px;"></div>
+        <div id="temperature-chart" style="width:100%; height:300px;"></div>
       </div>
       <div class="col-sm-6">
-        <div id="fourth-chart" style="width:100%; height:300px;"></div>
+        <div id="sat-gps-chart" style="width:100%; height:300px;"></div>
       </div>
     </div>
   </div>
@@ -68,18 +68,27 @@ $(document).ready(function () {
 
   const eventSource = new EventSource('/csv_stream');
   const temperatureData = []; // Array to hold temperature data for the chart
+  const beaconPowerData = []; // Array to hold temperature data for the chart
   const currentData = []; // Array to hold current data for the chart
-  const elevationData = []; // Array to hold elevation data for the chart
+  const satGpsData = [];
 
   eventSource.onmessage = function (event) {
     const data = event.data;
     const columns = data.split(','); // Split the CSV data into columns
 
-    const temperature = parseFloat(columns[7]); // Parse the temperature value
-    const current = parseFloat(columns[8]); // Parse the current value
-    const elevation = parseFloat(columns[10]); // Parse the elevation value
+    const beacon_power = parseFloat(columns[17]);
+    const temperature = parseFloat(columns[13]); // Parse the temperature value
+    const current = parseFloat(columns[36]); // Parse the current value
+    const sat_lock = parseFloat(columns[10]);
+
 
     const timestamp = new Date(columns[0] + ' ' + columns[1]).getTime(); // Create a timestamp from date and time
+
+    
+    beaconPowerData.push({
+      name: timestamp,
+      value: [timestamp, beacon_power],
+    });
 
     temperatureData.push({
       name: timestamp,
@@ -91,12 +100,16 @@ $(document).ready(function () {
       value: [timestamp, current],
     });
 
-    elevationData.push({
+    satGpsData.push({
       name: timestamp,
-      value: [timestamp, elevation],
+      value: [timestamp, sat_lock],
     });
 
     // Limit the number of data points shown on each chart (e.g., to the last 100 points)
+    if (beaconPowerData.length > 100) {
+      temperatureData.shift();
+    }
+
     if (temperatureData.length > 100) {
       temperatureData.shift();
     }
@@ -105,14 +118,15 @@ $(document).ready(function () {
       currentData.shift();
     }
 
-    if (elevationData.length > 100) {
-      elevationData.shift();
+    if (satGpsData.length > 100) {
+      satGpsData.shift();
     }
 
     // Update the Echarts charts with the new data
-    echarts.init(document.getElementById('temperature-chart')).setOption({
+
+    echarts.init(document.getElementById('beacon-power-chart')).setOption({
       title: {
-        text: 'Temperature',
+        text: 'Beacon Power',
       },
       tooltip: {
         trigger: 'axis',
@@ -147,6 +161,9 @@ $(document).ready(function () {
         },
       ],
     });
+
+
+
 
     echarts.init(document.getElementById('current-chart')).setOption({
       title: {
@@ -186,9 +203,9 @@ $(document).ready(function () {
       ],
     });
 
-    echarts.init(document.getElementById('elevation-chart')).setOption({
+    echarts.init(document.getElementById('temperature-chart')).setOption({
       title: {
-        text: 'Elevation',
+        text: 'Temperature',
       },
       tooltip: {
         trigger: 'axis',
@@ -207,7 +224,45 @@ $(document).ready(function () {
       series: [
         {
           type: 'line',
-          data: elevationData,
+          data: temperatureData,
+        },
+      ],
+      dataZoom: [
+        {
+          type: 'inside',
+          start: 0,
+          end: 100,
+        },
+        {
+          type: 'slider',
+          start: 0,
+          end: 100,
+        },
+      ],
+    });
+
+    echarts.init(document.getElementById('sat-gps-chart')).setOption({
+      title: {
+        text: 'Sat / GPS Lock',
+      },
+      tooltip: {
+        trigger: 'axis',
+      },
+      xAxis: {
+        type: 'time',
+        axisLabel: {
+          formatter: function (value) {
+            return new Date(value).toLocaleTimeString();
+          },
+        },
+      },
+      yAxis: {
+        type: 'value',
+      },
+      series: [
+        {
+          type: 'line',
+          data: satGpsData,
         },
       ],
       dataZoom: [
