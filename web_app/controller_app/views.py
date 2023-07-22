@@ -40,8 +40,41 @@ def get_satellite(request, satellite_id):
 
 @login_required
 def set_satellite(request, satellite_id):
-    satellite = Satellite.objects.get(id=satellite_id)
-    # Perform the "set satellite" action here
+    slsc_ip_details = SLSCNetworkSettings.objects.first()
+    if slsc_ip_details:
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.connect((slsc_ip_details.ip_address, int(slsc_ip_details.port_number)))
+
+                byte_code_cmd = bytearray([177, 1])
+
+                satellite = Satellite.objects.get(id=satellite_id)
+                sat_name = bytes(satellite.satellite_name, "utf-8")
+                line1 = bytes(satellite.line1 + "\n", "utf-8")
+                line2 = bytes(satellite.line2 + "\n", "utf-8")
+
+                command_to_slsc = byte_code_cmd + sat_name + line1 + line2
+                crc_sha = Crc16.calc(command_to_slsc)
+                command_to_slsc += crc_sha.to_bytes(2, "big")
+                print(command_to_slsc)
+                s.sendall(command_to_slsc)
+                received_resp = s.recv(10000)
+                received_resp = Crc16.calc(received_resp)
+
+            if not received_resp:
+                messages.success(request,
+                               'Set Satellite Command Sent.'.format(received_resp))
+            else:
+                messages.error(request,
+                                 'Set Satellite Command Sent. But CRC Check Failed'.format(received_resp))
+            print('Received', repr(data))
+        except:
+            messages.error(request, "Please check SLSC is not connecting..")
+    else:
+        messages.error(request, 'SLSC Is Not Configured. Please configure SLSC IP in Settings > SLSC Network Settings.')
+
+
+
     return redirect('satellite_list')
 
 @login_required
