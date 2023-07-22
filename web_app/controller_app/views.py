@@ -34,8 +34,34 @@ def satellite_list(request):
     return render(request, 'satellite_list.html', {'satellites': satellites})
 @login_required
 def get_satellite(request, satellite_id):
-    satellite = Satellite.objects.get(id=satellite_id)
-    # Perform the "get satellite" action here
+    slsc_ip_details = SLSCNetworkSettings.objects.first()
+    if slsc_ip_details:
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.connect((slsc_ip_details.ip_address, int(slsc_ip_details.port_number)))
+
+                command_to_slsc = bytearray([161, 2])
+                crc_sha = Crc16.calc(command_to_slsc)
+                command_to_slsc += crc_sha.to_bytes(2, "big")
+                print(command_to_slsc)
+                s.sendall(command_to_slsc)
+                received_resp = s.recv(1000)
+                if received_resp:
+                    received_resp = received_resp.decode("utf-8")
+                #received_resp = Crc16.calc(received_resp)
+                print('Received', repr(received_resp))
+
+            if received_resp:
+                messages.success(request,
+                                 'Get Satellite Command Sent. {}'.format(received_resp))
+
+
+        except:
+            messages.error(request, "Please check SLSC is not connecting..")
+    else:
+        messages.error(request, 'SLSC Is Not Configured. Please configure SLSC IP in Settings > SLSC Network Settings.')
+
+
     return redirect('satellite_list')
 
 @login_required
