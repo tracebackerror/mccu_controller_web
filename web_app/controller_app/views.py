@@ -58,7 +58,7 @@ data = '/Users/tracebackerror/Documents/GitHub/mccu_controller_web/oneoff/data.c
 def stream_csv(request):
     def event_stream():
         # Replace 'path/to/your/csv/file.csv' with the actual path to your CSV file
-        with open('/Users/tracebackerror/Documents/GitHub/mccu_controller_web/slsc/temp_data_str.csv', 'r') as csv_file:
+        with open('/Users/tracebackerror/Documents/GitHub/mccu_controller_web/slsc/temp_data.csv', 'r') as csv_file:
             csv_reader = csv.reader(csv_file)
             for row in csv_reader:
                 yield f'data: {",".join(row)}\n\n'
