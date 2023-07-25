@@ -80,11 +80,19 @@ $(document).ready(function () {
     const temperature = parseFloat(columns[13]); // Parse the temperature value
     const current = parseFloat(columns[36]); // Parse the current value
     const sat_lock = parseFloat(columns[10]);
+    const gps_lock = parseFloat(columns[2]);
 
 
-    const timestamp = new Date(columns[0] + ' ' + columns[1]).getTime(); // Create a timestamp from date and time
 
-    
+    const timestamp = new Date().getTime(); // Get the current local time as the timestamp
+
+    const gpsTimeSeries = [];
+    gpsTimeSeries.push({
+      name: timestamp,
+      value: [timestamp, gps_lock],
+    });
+
+
     beaconPowerData.push({
       name: timestamp,
       value: [timestamp, beacon_power],
@@ -102,12 +110,12 @@ $(document).ready(function () {
 
     satGpsData.push({
       name: timestamp,
-      value: [timestamp, sat_lock],
+      value: [timestamp, sat_lock, gps_lock],
     });
 
     // Limit the number of data points shown on each chart (e.g., to the last 100 points)
     if (beaconPowerData.length > 100) {
-      temperatureData.shift();
+      beaconPowerData.shift();
     }
 
     if (temperatureData.length > 100) {
@@ -261,8 +269,21 @@ $(document).ready(function () {
       },
       series: [
         {
+          name: 'Sat  Lock Time Series',
           type: 'line',
           data: satGpsData,
+          lineStyle: {
+              color: 'red', // Use red color for the first series
+            },
+        },
+        {
+          name: 'GPS Lock Time Series',
+          type: 'line',
+          data: gpsTimeSeries,
+          lineStyle: {
+              color: 'blue', // Use blue color for the second series
+              type: 'dashed', // Use dashed line for the second series
+            },
         },
       ],
       dataZoom: [
