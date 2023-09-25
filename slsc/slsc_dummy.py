@@ -97,7 +97,7 @@ def write_to_tempCsv(filename, data):
 
 # Initialise variables, arrays
 TimeStamp = 0
-SatelliteName = "GSAT-10"
+SatelliteName = "Vikram Lander"
 
 SYSHealthFlag = 0  # done
 OSUFlag = 0  # done
@@ -323,4 +323,4 @@ while True:
     write_to_slscStatusLog(list_of_param())
     write_to_tempCsv("temp_data.csv", list_of_param())
     # print(time.time()-t1)
-    time.sleep(0.05)
+    time.sleep(0.01)
